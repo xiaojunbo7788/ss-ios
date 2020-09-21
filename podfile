@@ -1,0 +1,26 @@
+platform :ios, '10.0'
+target 'WXReader' do
+pod 'AFNetworking',:inhibit_warnings => true
+pod 'YYKit',:inhibit_warnings => true
+pod 'Masonry',:inhibit_warnings => true
+pod 'pop',:inhibit_warnings => true
+
+pod 'UMCCommon',:inhibit_warnings => true
+#pod 'UMCAnalytics',:inhibit_warnings => true
+pod 'UMCSecurityPlugins',:inhibit_warnings => true
+pod 'Bugly',:inhibit_warnings => true
+pod 'XHNetworkCache',:inhibit_warnings => true
+pod 'Reveal-SDK', '24', :inhibit_warnings => true, :configurations => ['Debug']
+
+#pod 'HCSStarRatingView', '~> 1.5'
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+ target.build_configurations.each do |config|
+  if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'].to_f < 9.0
+    config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '9.0'
+   end
+  end
+ end
+end

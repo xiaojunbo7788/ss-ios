@@ -1,0 +1,36 @@
+//
+//  PrefixHeader.pch
+//  WXReader
+//
+//  Created by Andrew on 2018/5/14.
+//  Copyright © 2018年 Andrew. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+#import "SettingConfig.h"
+
+#import "SwitchConfig.h"
+
+#import "ServerConfig.h"
+
+#import "ColorConfig.h"
+
+#import "NotificationConfig.h"
+
+#import "FrameConfig.h"
+
+#import "ImportConfig.h"
+
+#import "SystemConfig.h"
+
+#import "MemoryConfig.h"
+
+#import "DefineConfig.h"
+
+#endif
+
+#endif /* PrefixHeader_pch */
