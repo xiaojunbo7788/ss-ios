@@ -293,8 +293,7 @@ static NSInteger const totalCollectionViewCellCount = 200;
 
 #pragma mark - Getter
 - (NSInteger)totalBannerItemsCount{
-    
-    return self.cycleScrollEnable?(([self _imageDataSources].count > 1)?([self _imageDataSources].count * self.repeatCount):[self _imageDataSources].count):([self _imageDataSources].count);
+    return self.cycleScrollEnable?(([self _imageDataSources].count > 1)? ([self _imageDataSources].count * self.repeatCount):[self _imageDataSources].count): ([self _imageDataSources].count);
 }
 
 - (BOOL)autoScroll{
@@ -465,7 +464,8 @@ static NSInteger const totalCollectionViewCellCount = 200;
 
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.totalBannerItemsCount;
+    NSInteger count = self.totalBannerItemsCount;
+    return count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{

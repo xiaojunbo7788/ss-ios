@@ -18,6 +18,8 @@
     BOOL _immediatelyCallBack;
 }
 
+@property (nonatomic, assign)  double kTimeDuration;
+
 @end
 
 @implementation WXYZ_GCDTimer
@@ -161,10 +163,10 @@
 {
     
     BOOL __block kImmediatelyCallBack = _immediatelyCallBack;
-    double __block kTimeDuration = _timeDuration <= 0 ? HUGE_VAL : _timeDuration;
+    self.kTimeDuration = _timeDuration <= 0 ? HUGE_VAL : _timeDuration;
     
     // 计时器时间不正确
-    if (kTimeDuration <= 0) {
+    if (self.kTimeDuration <= 0) {
         if (self.timerFinishedBlock) {
             self.timerFinishedBlock();
         }
@@ -181,7 +183,9 @@
     timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
     dispatch_source_set_timer(timer,dispatch_walltime(NULL, 0), _interval * NSEC_PER_SEC, 0);
     dispatch_source_set_event_handler(timer, ^{
-        [self songShuTimer:runTimes kImmediatelyCallBack:kImmediatelyCallBack kTimeDuration:kTimeDuration];
+        
+        [self songShuTimer:runTimes kImmediatelyCallBack:kImmediatelyCallBack];
+        
     });
     dispatch_resume(timer);
     
@@ -190,22 +194,22 @@
     }
 }
 
-- (void)songShuTimer:(NSUInteger)runTimes kImmediatelyCallBack:(BOOL)kImmediatelyCallBack kTimeDuration:(double)kTimeDuration {
+- (void)songShuTimer:(NSUInteger)runTimes kImmediatelyCallBack:(BOOL)kImmediatelyCallBack {
     runTimes ++;
     
     _timerState = WXYZ_GCDTimerStateRunning;
     
-    if (kTimeDuration <= 0) {
+    if (_kTimeDuration <= 0) {
         [self finishTimer];
         
     } else {
-        kTimeDuration = kTimeDuration - _interval;
+        _kTimeDuration = _kTimeDuration - _interval;
         if (kImmediatelyCallBack) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
                 if (self.timerRunningBlock) {
-                    self.timerRunningBlock(runTimes, kTimeDuration != INFINITY ?kTimeDuration:0.f);
+                    self.timerRunningBlock(runTimes, self.kTimeDuration != INFINITY ? self.kTimeDuration:0.f);
                 }
             });
             

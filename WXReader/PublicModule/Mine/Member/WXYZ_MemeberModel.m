@@ -15,6 +15,9 @@
     return @{@"list" : [WXYZ_GoodsModel class], @"privilege" : [WXYZ_PrivilegeModel class]};
 }
 
+- (BOOL)thirdOn {
+    return true;
+}
 
 @end
 

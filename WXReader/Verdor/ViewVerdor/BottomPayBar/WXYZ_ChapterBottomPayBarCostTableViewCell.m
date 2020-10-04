@@ -74,11 +74,29 @@
     if (WXYZ_UserInfoManager.isLogin) {
         if (self.base_info.remain - buyOptionModel.total_price >= 0) {
             [buyChapterButton setTitle:@"确认购买" forState:UIControlStateNormal];
+            [buyChapterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(self.contentView.mas_right).with.offset(- kMargin);
+                make.centerY.mas_equalTo(self.contentView.mas_centerY);
+                make.height.mas_equalTo(35);
+                make.width.mas_equalTo(100);
+            }];
         } else {
-            [buyChapterButton setTitle:@"充值并购买" forState:UIControlStateNormal];
+            [buyChapterButton setTitle:@"获取VIP无限看" forState:UIControlStateNormal];
+            [buyChapterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(self.contentView.mas_right).with.offset(- kMargin);
+                make.centerY.mas_equalTo(self.contentView.mas_centerY);
+                make.height.mas_equalTo(35);
+                make.width.mas_equalTo(120);
+            }];
         }
     } else {
         [buyChapterButton setTitle:@"登录后购买" forState:UIControlStateNormal];
+        [buyChapterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(self.contentView.mas_right).with.offset(- kMargin);
+            make.centerY.mas_equalTo(self.contentView.mas_centerY);
+            make.height.mas_equalTo(35);
+            make.width.mas_equalTo(100);
+        }];
     }
     
     // 实付

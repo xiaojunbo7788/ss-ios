@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *chapter_title;                // 章节标题
 
+@property (nonatomic, copy) NSString *recharge_content;
+
 @property (nonatomic, copy) NSString *subtitle;                     // 章节子标题
 
 @property (nonatomic, assign) NSInteger total_words;                // 全部字数

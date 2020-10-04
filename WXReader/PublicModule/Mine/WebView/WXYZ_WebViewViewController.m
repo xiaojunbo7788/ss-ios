@@ -39,7 +39,9 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [[NSNotificationCenter defaultCenter] postNotificationName:Notification_Hidden_Tabbar object:@"1"];
+    if (!self.isNoHiddenTab) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:Notification_Hidden_Tabbar object:@"1"];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -58,6 +60,10 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
 {
     [super viewDidAppear:animated];
     [self setStatusBarDefaultStyle];
+     if (self.form != nil && self.form.length > 0) {
+          [self.WKWebView loadHTMLString:_form baseURL:nil];
+     }
+    
 }
 
 - (void)initialize
@@ -73,9 +79,20 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
 
 - (void)createSubviews
 {
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-    //加载网页
-    [self.WKWebView loadRequest:request];
+    if (self.form != nil && self.form.length > 0) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+        //加载网页
+        [self.WKWebView loadRequest:request];
+    } else {
+//        [self.WKWebView loadHTMLString:self.form baseURL:nil];
+        //加载网页
+//        [self.WKWebView loadRequest:request];
+    }
+    
+}
+
+- (void)setForm:(NSString *)form {
+    _form = form;
 }
 
 - (void)customBackItemClicked

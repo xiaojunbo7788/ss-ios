@@ -12,7 +12,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 
 #define Menu_Setting_Cell_Height 70
-#define Menu_Setting_Bar_Height (2 * Menu_Setting_Cell_Height + PUB_NAVBAR_OFFSET)
+#define Menu_Setting_Bar_Height (3 * Menu_Setting_Cell_Height + PUB_NAVBAR_OFFSET)
 
 @implementation WXYZ_ComicMenuSettingBar
 {
@@ -20,9 +20,10 @@
     
     KLSwitch *clickPageSwitch;
     KLSwitch *nightSwitch;
+    
 }
 
-- (instancetype)init
+- (instancetype)initWithMode:(int)mode
 {
     if (self = [super init]) {
         self.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -50,12 +51,12 @@
             [defualt synchronize];
         }
         
-        [self createSubViews];
+        [self createSubViews:mode];
     }
     return self;
 }
 
-- (void)createSubViews
+- (void)createSubViews:(int)mode
 {
     bottomView = [[UIView alloc] init];
     bottomView.backgroundColor = [UIColor whiteColor];
@@ -210,7 +211,90 @@
         
         cellIndex ++;
     }
+    {
+        UIView *cell = [[UIView alloc] init];
+        cell.backgroundColor = [UIColor whiteColor];
+        [bottomView addSubview:cell];
+        
+        [cell mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.top.mas_equalTo(cellIndex * Menu_Setting_Cell_Height);
+            make.width.mas_equalTo(bottomView.mas_width);
+            make.height.mas_equalTo(Menu_Setting_Cell_Height);
+        }];
+        self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.leftButton.layer.masksToBounds = true;
+        self.leftButton.layer.cornerRadius = 8;
+        [self.leftButton setTitle:@"垂直模式" forState:UIControlStateNormal];
+        self.leftButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        self.leftButton.layer.borderColor = kMainColor.CGColor;
+        self.leftButton.layer.borderWidth = 1;
+        [cell addSubview:self.leftButton];
+        
+        self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.rightButton.layer.masksToBounds = true;
+        self.rightButton.layer.cornerRadius = 8;
+        [self.rightButton setTitle:@"水平模式" forState:UIControlStateNormal];
+        self.rightButton.titleLabel.font = [UIFont systemFontOfSize:15];
+        self.rightButton.layer.borderColor = kMainColor.CGColor;
+        self.rightButton.layer.borderWidth = 1;
+        [cell addSubview:self.rightButton];
+        
+        [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(100);
+            make.height.mas_equalTo(35);
+            make.centerY.mas_equalTo(cell.mas_centerY);
+            make.right.mas_equalTo(cell.mas_right).multipliedBy(0.5).offset(-25);
+        }];
+        
+        [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(100);
+            make.height.mas_equalTo(35);
+            make.centerY.mas_equalTo(cell.mas_centerY);
+            make.left.mas_equalTo(cell.mas_right).multipliedBy(0.5).offset(25);
+        }];
+        
+        [self.leftButton addTarget:self action:@selector(leftPress) forControlEvents:UIControlEventTouchUpInside];
+        [self.rightButton addTarget:self action:@selector(rightPress) forControlEvents:UIControlEventTouchUpInside];
+        
+        
+        
+        [self changeMode:mode];
+        
+        cellIndex ++;
+    }
     
+}
+
+- (void)leftPress {
+    [self changeMode:1];
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(changeMode:)]) {
+        [self.delegate changeMode:1];
+    }
+}
+
+- (void)rightPress {
+    [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeSuccess alertTitle:@"暂不支持"];
+    return;
+    [self changeMode:2];
+    if (self.delegate != nil && [self.delegate respondsToSelector:@selector(changeMode:)]) {
+        [self.delegate changeMode:2];
+    }
+}
+
+- (void)changeMode:(int)mode {
+    if (mode == 1) {
+        self.leftButton.backgroundColor = kMainColor;
+        [self.leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.rightButton.backgroundColor = [UIColor clearColor];
+        [self.rightButton setTitleColor:kMainColor forState:UIControlStateNormal];
+        
+    } else {
+        self.rightButton.backgroundColor = kMainColor;
+        [self.rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.leftButton.backgroundColor = [UIColor clearColor];
+        [self.leftButton setTitleColor:kMainColor forState:UIControlStateNormal];
+    }
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -265,10 +349,17 @@
         return nightSwitch;
     }
     
+    if ([self.leftButton pointInside:[self.leftButton convertPoint:point fromView:self] withEvent:event]) {
+         return self.leftButton;
+     }
+     if ([self.rightButton pointInside:[self.rightButton convertPoint:point fromView:self] withEvent:event]) {
+         return self.rightButton;
+     }
+    
     if ([bottomView pointInside:[bottomView convertPoint:point fromView:self] withEvent:event]) {
         return bottomView;
     }
-    
+        
     return view;
 }
 

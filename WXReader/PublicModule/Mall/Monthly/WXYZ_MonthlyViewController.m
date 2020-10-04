@@ -23,7 +23,7 @@
 #import "WXYZ_MonthlyModel.h"
 
 #import "WXYZ_BannerActionManager.h"
-
+//TODO:会员页面
 @interface WXYZ_MonthlyViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) WXYZ_MonthlyHeaderView *headerView;

@@ -8,7 +8,7 @@
 //
 
 #import "WXYZ_ComicDownloadManagementViewController.h"
-#import "WXYZ_ComicReaderViewController.h"
+#import "WXYZ_ComicReaderViewController2.h"
 #import "WXYZ_ComicDownloadManagementDetailViewController.h"
 
 #import "WXYZ_ComicDownloadManagementTableViewCell.h"
@@ -223,7 +223,7 @@
     };
     cell.buttonSelectBlock = ^(WXYZ_ProductionModel *comicModel) {
         [[WXYZ_ProductionCollectionManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] moveCollectionToTopWithProductionModel:t_model];
-        WXYZ_ComicReaderViewController *vc = [[WXYZ_ComicReaderViewController alloc] init];
+        WXYZ_ComicReaderViewController2 *vc = [[WXYZ_ComicReaderViewController2 alloc] init];
         vc.comicProductionModel = comicModel;
         vc.chapter_id = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapter_idWithProduction_id:comicModel.production_id];
         [weakSelf.navigationController pushViewController:vc animated:YES];

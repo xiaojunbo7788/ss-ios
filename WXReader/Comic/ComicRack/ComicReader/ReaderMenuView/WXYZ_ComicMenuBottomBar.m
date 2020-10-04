@@ -50,7 +50,7 @@
     WXYZ_BadgeView *badgeView;
 }
 
-- (instancetype)init
+- (instancetype)initWithMode:(int)mode
 {
     if (self = [super init]) {
         
@@ -66,12 +66,16 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)name:UIKeyboardWillShowNotification object:nil];
         //增加监听，当键退出时收出消息
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)name:UIKeyboardWillHideNotification object:nil];
-        [self createSubViews];
+        [self createSubViews:mode];
     }
     return self;
 }
 
-- (void)createSubViews
+- (void)changeMode:(int)mode {
+    [settingBar changeMode:mode];
+}
+
+- (void)createSubViews:(int)mode
 {
 #if WX_Comments_Mode
     sendComments = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -318,7 +322,8 @@
     }];
 #endif
     
-    settingBar = [[WXYZ_ComicMenuSettingBar alloc] init];
+    settingBar = [[WXYZ_ComicMenuSettingBar alloc] initWithMode:mode];
+   
     
     scrollToTop = [UIButton buttonWithType:UIButtonTypeCustom];
     scrollToTop.adjustsImageWhenHighlighted = NO;
@@ -345,6 +350,11 @@
             make.width.height.mas_equalTo(MenuButtonHeight);
         }];
     }
+}
+
+- (void)setDelegate:(id<WXYZ_ComicMenuSettingBarDelegate>)delegate {
+    _delegate = delegate;
+     settingBar.delegate = self.delegate;
 }
 
 - (void)showMenuBottomBar

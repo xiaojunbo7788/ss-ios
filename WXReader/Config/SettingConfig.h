@@ -22,21 +22,23 @@
 
 // api服务器地址 fix-g
 //TODO:线上
-// api域名
-#define APIURL @"https://app.sscomic.life"
-// api秘钥
-#define app_key @"TiLFn7mGINnlGm4f"
-// api签名
-#define secret_key @"aWazSjvX6BLtI39elV4CpwCMeQzJud0q"
+//// api域名
+//#define APIURL @"https://app.sscomic.life"
+//// api秘钥
+//#define app_key @"TiLFn7mGINnlGm4f"
+//// api签名
+//#define secret_key @"aWazSjvX6BLtI39elV4CpwCMeQzJud0q"
 
 
 ////TODO:测试
-//// api域名
-//#define APIURL @"http://api.sscomic.life"
-//// api秘钥
-//#define app_key @"dc1fbf20163dc54a"
-//// api签名
-//#define secret_key @"60c76bfc252cd9403b4a0a7bbd8ad827"
+// api域名
+#define APIURL @"http://api.sscomic.life"
+// api域名
+#define APIURL @"http://api.songshucangku.com"
+// api秘钥
+#define app_key @"dc1fbf20163dc54a"
+// api签名
+#define secret_key @"60c76bfc252cd9403b4a0a7bbd8ad827"
 
 
 

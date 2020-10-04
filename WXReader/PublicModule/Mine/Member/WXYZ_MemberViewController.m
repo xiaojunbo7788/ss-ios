@@ -16,7 +16,7 @@
 #import "WXYZ_MemberPayTypeTableViewCell.h"
 #import "WXYZ_MemberPrivilegeTableViewCell.h"
 #import "WXYZ_MemberAboutTableViewCell.h"
-
+#import "WXYZ_BannerActionManager.h"
 #import "WXYZ_MemberHeaderView.h"
 
 #if !WX_Third_Pay
@@ -90,6 +90,13 @@
     self.headerView = [[WXYZ_MemberHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PUB_NAVBAR_HEIGHT + kGeometricHeight(SCREEN_WIDTH - kMargin, 1053, 215) + 30)];
     [self.mainTableViewGroup setTableHeaderView:self.headerView];
     
+    WS(weakSelf)
+    self.headerView.bannerrImageClickBlock = ^(WXYZ_BannerModel *bannerModel) {
+        if ([WXYZ_BannerActionManager getBannerActionWithBannerModel:bannerModel productionType:weakSelf.productionType]) {
+            [weakSelf.navigationController pushViewController:[WXYZ_BannerActionManager getBannerActionWithBannerModel:bannerModel productionType:weakSelf.productionType] animated:YES];
+        }
+    };
+    
     UIView *toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - PUB_TABBAR_HEIGHT, SCREEN_WIDTH, PUB_TABBAR_HEIGHT)];
     toolBar.backgroundColor = kWhiteColor;
     toolBar.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -125,6 +132,7 @@
         make.right.mas_equalTo(confirmButton.mas_left);
         make.height.mas_equalTo(confirmButton.mas_height);
     }];
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -328,27 +336,41 @@
 #if WX_Third_Pay
         WXYZ_GoodsModel *t_goodsModel = [self.memberModel.list objectOrNilAtIndex:goodsSelectIndex];
         WXYZ_PayModel *t_payModel = [t_goodsModel.pal_channel objectOrNilAtIndex:payStyleIndex];
+        NSDictionary *dic = @{@"channel_id":@(t_payModel.channel_id),@"goods_id":@(t_goodsModel.goods_id),@"type":t_payModel.channel_code};
+        [self gotoPay:dic];
+//        NSString *payURL = t_payModel.gateway;
+//
+//        if (payURL.length == 0) {
+//            payURL = APIURL;
+//        }
         
-        NSString *payURL = t_payModel.gateway;
-        
-        if (payURL.length == 0) {
-            payURL = APIURL;
-        }
-        
-        if ([t_payModel.gateway containsString:@"?"]) {
-            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
-        } else {
-            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"?token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
-        }
-        payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&goods_id=%@", [WXYZ_UtilsHelper formatStringWithInteger:t_goodsModel.goods_id]]];
-        
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:payURL]];
+//        if ([t_payModel.gateway containsString:@"?"]) {
+//            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
+//        } else {
+//            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"?token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
+//        }
+//        payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&goods_id=%@", [WXYZ_UtilsHelper formatStringWithInteger:t_goodsModel.goods_id]]];
+//
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:payURL]];
 #else
         WXYZ_GoodsModel *goodsModel = [self.memberModel.list objectOrNilAtIndex:goodsSelectIndex];
         self.mainTableViewGroup.userInteractionEnabled = NO;
         [[IAPManager sharedManager] requestProductWithId:[NSString stringWithFormat:@"%@", goodsModel.apple_id]];
 #endif
     }
+}
+
+- (void)gotoPay:(NSDictionary *)p {
+    WS(weakSelf)
+    [WXYZ_NetworkRequestManger POST:@"/pay/codepay" parameters:p model:nil success:^(BOOL isSuccess, NSDictionary *_Nullable dic, WXYZ_NetworkRequestModel *requestModel) {
+        if (isSuccess) {
+            WXYZ_WebViewViewController *vc = [[WXYZ_WebViewViewController alloc] init];
+            vc.form = dic[@"data"];
+            vc.navTitle = @"支付";
+            vc.isPresentState = NO;
+            [[WXYZ_ViewHelper getCurrentNavigationController] pushViewController:vc animated:YES];
+        }
+    } failure:nil];
 }
 
 - (void)netRequest {
@@ -360,6 +382,40 @@
         }
         [weakSelf.mainTableViewGroup reloadData];
     } failure:nil];
+    
+    
+    
+    NSString *site_type = @"";
+       switch (self.productionType) {
+           case WXYZ_ProductionTypeBook:
+               site_type = @"1";
+               break;
+           case WXYZ_ProductionTypeComic:
+               site_type = @"2";
+               break;
+           case WXYZ_ProductionTypeAudio:
+               site_type = @"3";
+               break;
+               
+           default:
+               break;
+       }
+
+       
+       [WXYZ_NetworkRequestManger POST:Member_Monthly parameters:@{@"site_id":@"2"} model:WXYZ_MonthlyModel.class success:^(BOOL isSuccess, WXYZ_MonthlyModel *_Nullable t_model, WXYZ_NetworkRequestModel *requestModel) {
+                
+           weakSelf.headerView.banner = t_model.banner;
+
+           [weakSelf.mainTableViewGroup setTableHeaderView:weakSelf.headerView];
+
+           [weakSelf.mainTableViewGroup endRefreshing];
+
+           [weakSelf.mainTableViewGroup reloadData];
+
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+
+       }];
 }
 
 @end

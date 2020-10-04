@@ -9,15 +9,15 @@
 #import "WXYZ_ChapterBottomPayBar.h"
 
 #import "WXYZ_RechargeViewController.h"
-
+#import "WXYZ_MemberViewController.h"
 #import "WXYZ_ChapterBottomPayBarTitleTableViewCell.h"
 #import "WXYZ_ChapterBottomPayBarOptionTableViewCell.h"
 #import "WXYZ_ChapterBottomPayBarBalanceTableViewCell.h"
 #import "WXYZ_ChapterBottomPayBarAutoBuyTableViewCell.h"
 #import "WXYZ_ChapterBottomPayBarCostTableViewCell.h"
-
+#import "WXZY_CommonPayAlertView.h"
 #import "WXYZ_ReaderBookManager.h"
-
+#import "WXYZ_ShareManager.h"
 @interface WXYZ_ChapterBottomPayBar ()  <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) UITableView *mainTableView;
@@ -226,13 +226,35 @@
 //            [kMainWindow sendSubviewToBack:weakSelf];
         } else {
             if (needRecharge) {
+                //TODO:弹窗
+                 WXZY_CommonPayAlertView *payAlertView = [[WXZY_CommonPayAlertView alloc]initWithFrame:CGRectZero];
+                payAlertView.msg = _chapterModel.recharge_content;
+                [payAlertView showInView:[UIApplication sharedApplication].keyWindow];
+                WS(weakSelf)
+                payAlertView.onClick = ^(int type) {
+                    if (type == 1) {
+                        //分享
+                         [[WXYZ_ShareManager sharedManager] shareApplicationInController:weakSelf shareState:WXYZ_ShareStateAll];
+                    } else if (type == 2) {
+                        //vip
+                        WXYZ_MemberViewController *vc = [[WXYZ_MemberViewController alloc] init];
+                        vc.productionType = _productionType;
+                        WXYZ_NavigationController *t_nav = [[WXYZ_NavigationController alloc] initWithRootViewController:vc];
+                        [[WXYZ_ViewHelper getWindowRootController] presentViewController:t_nav animated:YES completion:nil];
+                        [kMainWindow sendSubviewToBack:weakSelf];
+                        
+                    } else if (type == 3) {
+                        //充值
+                        WXYZ_RechargeViewController *vc = [[WXYZ_RechargeViewController alloc] init];
+                        vc.production_id = _chapterModel.production_id;
+                        vc.productionType = _productionType;
+                        WXYZ_NavigationController *t_nav = [[WXYZ_NavigationController alloc] initWithRootViewController:vc];
+                        [[WXYZ_ViewHelper getWindowRootController] presentViewController:t_nav animated:YES completion:nil];
+                        [kMainWindow sendSubviewToBack:weakSelf];
+                    }
+                };
                 
-                WXYZ_RechargeViewController *vc = [[WXYZ_RechargeViewController alloc] init];
-                vc.production_id = _chapterModel.production_id;
-                vc.productionType = _productionType;
-                WXYZ_NavigationController *t_nav = [[WXYZ_NavigationController alloc] initWithRootViewController:vc];
-                [[WXYZ_ViewHelper getWindowRootController] presentViewController:t_nav animated:YES completion:nil];
-//                [kMainWindow sendSubviewToBack:weakSelf];
+
             } else {
                 WS(weakSelf)
                 [weakSelf hiddenBottomPayBar];

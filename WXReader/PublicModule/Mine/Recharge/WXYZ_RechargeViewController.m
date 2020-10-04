@@ -13,9 +13,10 @@
 #import "WXYZ_MemberPayTypeTableViewCell.h"
 #import "WXYZ_MemberAboutTableViewCell.h"
 #import "WXYZ_RechargeHeaderView.h"
-
+#import "WXYZ_UserInfoManager.h"
 #import "WXYZ_RechargeModel.h"
-
+#import "WXYZ_PayTableViewCell.h"
+#import "WXYZ_WebViewViewController.h"
 #if !WX_Third_Pay
     #import "IAPManager.h"
 #endif
@@ -99,6 +100,7 @@
 {
     self.mainTableViewGroup.delegate = self;
     self.mainTableViewGroup.dataSource = self;
+    [self.mainTableViewGroup registerClass:[WXYZ_PayTableViewCell class] forCellReuseIdentifier:@"WXYZ_PayTableViewCell"];
     [self.view addSubview:self.mainTableViewGroup];
     
     [self.mainTableViewGroup mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -341,21 +343,28 @@
 #if WX_Third_Pay
         WXYZ_GoodsModel *t_goodsModel = [self.rechargeModel.list objectOrNilAtIndex:goodsSelectIndex];
         WXYZ_PayModel *t_payModel = [t_goodsModel.pal_channel objectOrNilAtIndex:payStyleIndex];
+        NSDictionary *dic = @{@"channel_id":@(t_payModel.channel_id),@"goods_id":@(t_goodsModel.goods_id),@"type":t_payModel.channel_code};
+        [self gotoPay:dic];
+//        params.putExtraParams("channel_id", palChannelBean.getChannel_id()+"");
+//                           params.putExtraParams("goods_id", mGoosId);
+//                           params.putExtraParams("type", palChannelBean.getChannel_code());
+//        NSString *payURL = t_payModel.gateway;
+//
+//        if (payURL.length == 0) {
+//            payURL = APIURL;
+//        }
         
-        NSString *payURL = t_payModel.gateway;
         
-        if (payURL.length == 0) {
-            payURL = APIURL;
-        }
         
-        if ([t_payModel.gateway containsString:@"?"]) {
-            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
-        } else {
-            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"?token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
-        }
-        payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&goods_id=%@", [WXYZ_UtilsHelper formatStringWithInteger:t_goodsModel.goods_id]]];
         
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:payURL]];
+//        if ([t_payModel.gateway containsString:@"?"]) {
+//            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
+//        } else {
+//            payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"?token=%@", [[WXYZ_UserInfoManager sharedManager] getUserInfoWithKey:USER_TOKEN]]];
+//        }
+//        payURL = [payURL stringByAppendingString:[NSString stringWithFormat:@"&goods_id=%@", [WXYZ_UtilsHelper formatStringWithInteger:t_goodsModel.goods_id]]];
+//        
+//        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:payURL]];
 #else
         WXYZ_GoodsModel *goodsModel = [self.rechargeModel.list objectOrNilAtIndex:goodsSelectIndex];
         self.mainTableViewGroup.userInteractionEnabled = NO;
@@ -364,6 +373,19 @@
         [[IAPManager sharedManager] requestProductWithId:[NSString stringWithFormat:@"%@", goodsModel.apple_id]];
 #endif
     }
+}
+
+- (void)gotoPay:(NSDictionary *)p {
+    WS(weakSelf)
+    [WXYZ_NetworkRequestManger POST:@"/pay/codepay" parameters:p model:nil success:^(BOOL isSuccess, NSDictionary *_Nullable dic, WXYZ_NetworkRequestModel *requestModel) {
+        if (isSuccess) {
+            WXYZ_WebViewViewController *vc = [[WXYZ_WebViewViewController alloc] init];
+            vc.form = dic[@"data"];
+            vc.navTitle = @"支付";
+            vc.isPresentState = NO;
+            [[WXYZ_ViewHelper getCurrentNavigationController] pushViewController:vc animated:YES];
+        }
+    } failure:nil];
 }
 
 - (void)netRequest

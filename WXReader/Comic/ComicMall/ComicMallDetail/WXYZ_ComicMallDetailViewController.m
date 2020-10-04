@@ -7,7 +7,7 @@
 //  漫画详情
 //
 
-#import "WXYZ_ComicReaderViewController.h"
+#import "WXYZ_ComicReaderViewController2.h"
 #import "WXYZ_ComicReaderDownloadViewController.h"
 #import "WXYZ_TaskViewController.h"
 
@@ -343,7 +343,7 @@
     
     [WXYZ_TaskViewController taskReadRequestWithProduction_id:self.comic_id];
     
-    WXYZ_ComicReaderViewController *vc = [[WXYZ_ComicReaderViewController alloc] init];
+    WXYZ_ComicReaderViewController2 *vc = [[WXYZ_ComicReaderViewController2 alloc] init];
     vc.comicProductionModel = self.comicDetailModel.productionModel;
     vc.chapter_id = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapter_idWithProduction_id:self.comic_id];
     if (vc.chapter_id == 0) {// 如果没有阅读记录默认阅读第一章

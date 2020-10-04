@@ -88,6 +88,7 @@
     [self createSubviews];
 }
 
+
 - (void)initialize {
     [self hiddenNavigationBarLeftButton];
     [self setNavigationBarTitle:@"手机号快捷登录"];
@@ -674,6 +675,10 @@
 - (void)dataInput:(NSDictionary<NSString *, UIImage *> *)dict {
     _iconImageView.image = dict.allValues.firstObject;
     _descLabel.text = dict.allKeys.firstObject;
+}
+
+- (void)dealloc {
+    NSLog(@"释放");
 }
 
 @end

@@ -9,8 +9,9 @@
 
 @interface WXYZ_WebViewViewController : WXYZ_BasicViewController
 
+@property (nonatomic, copy) NSString *form;
 @property (nonatomic, copy) NSString *URLString;
-
+@property (nonatomic, assign) BOOL isNoHiddenTab;
 @property (nonatomic, assign) BOOL OnTheFrontPage;
 
 @end

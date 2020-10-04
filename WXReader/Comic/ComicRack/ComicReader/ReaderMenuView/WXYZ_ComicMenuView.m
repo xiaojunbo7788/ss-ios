@@ -18,13 +18,12 @@
 
 implementation_singleton(WXYZ_ComicMenuView)
 
-- (instancetype)init
-{
+- (instancetype)init {
     if (self = [super init]) {
         
         [self initialize];
-        
-        [self createSubViews];
+
+        [self createSubViews:1];
     }
     return self;
 }
@@ -38,14 +37,19 @@ implementation_singleton(WXYZ_ComicMenuView)
     self.isShowing = NO;
 }
 
-- (void)createSubViews
+- (void)createSubViews:(int)mode
 {
     topBar = [[WXYZ_ComicMenuTopBar alloc] init];
     [self addSubview:topBar];
     
-    bottomBar = [[WXYZ_ComicMenuBottomBar alloc] init];
+    bottomBar = [[WXYZ_ComicMenuBottomBar alloc] initWithMode:mode];
     [self addSubview:bottomBar];
 }
+
+- (void)changeMode:(int)mode {
+    [bottomBar changeMode:mode];
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -80,6 +84,7 @@ implementation_singleton(WXYZ_ComicMenuView)
 
 - (void)showMenuView
 {
+    bottomBar.delegate = self.delegate;
     [bottomBar reloadCollectionState];
     if (self.isShowing) {
         return;

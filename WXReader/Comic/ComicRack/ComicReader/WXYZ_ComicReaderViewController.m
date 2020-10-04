@@ -31,7 +31,7 @@
 #define MinScale 1.0f
 #define MaxScale 2.0f
 
-@interface WXYZ_ComicReaderViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface WXYZ_ComicReaderViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate,WXYZ_ComicMenuSettingBarDelegate,WXYZ_ComicReaderTableViewCellDelegate>
 {
     BOOL isEnableTurnPage;
     BOOL isEnableBarrage;
@@ -62,13 +62,15 @@
 /// 上次请求的章节ID
 @property (nonatomic, assign) NSInteger oldChapterID;
 
+@property (nonatomic, assign) int selMode;
+
 @end
 
 @implementation WXYZ_ComicReaderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.selMode = 1;
     [self initialize];
     [self createSubviews];
     [self netRequest];
@@ -102,9 +104,7 @@
     self.totalBarrageArray = [NSArray array];
     [self setNavigationBarTitle:[[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapterTitleWithProduction_id:self.comicProductionModel.production_id]?:@""];
     // 设置菜单栏展示项
-//    [WXYZ_ComicMenuView sharedManager].comicChapterModel = self.comicChapterModel;
-//    [WXYZ_ComicMenuView sharedManager].productionModel = self.comicProductionModel;
-    
+
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:Enable_Click_Page] isEqualToString:@"0"]) {
         isEnableTurnPage = NO;
     } else {
@@ -194,6 +194,7 @@
     [self.view addSubview:self.welcomePageView];
     
     [self.view addSubview:[WXYZ_ComicMenuView sharedManager]];
+    [WXYZ_ComicMenuView sharedManager].delegate = self;
     
     if ([[[NSUserDefaults standardUserDefaults] objectForKey:Enable_Click_Night] isEqualToString:@"1"]) {
         [self.view addSubview:[WXYZ_NightModeView sharedManager]];
@@ -213,6 +214,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (self.comicChapterModel.is_preview) {
+        [[WXYZ_ComicMenuView sharedManager] changeMode:self.selMode];
         [[WXYZ_ComicMenuView sharedManager] showMenuView];
         [self.barrageManager pause];
         return;
@@ -262,11 +264,15 @@
             
             if (!cell) {
                 cell = [[WXYZ_ComicReaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"WXYZ_ComicReaderTableViewCell"];
+                cell.delegate = self;
             }
+            cell.selModel = self.selMode;
+            cell.localRow = (int)indexPath.row;
             cell.comic_id = self.comicChapterModel.production_id;
             cell.chapter_id = self.comicChapterModel.chapter_id;
             cell.chapter_update_time = [self.comicChapterModel.update_time integerValue];
             cell.imageModel = [self.comicChapterModel.image_list objectOrNilAtIndex:indexPath.row];
+            
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
         }
@@ -478,7 +484,7 @@
     [self hiddenNavigationBarLeftButton];
 
     self.mainBottomScrollView.userInteractionEnabled = YES;
-
+    [[WXYZ_ComicMenuView sharedManager] changeMode:self.selMode];
     [[WXYZ_ComicMenuView sharedManager] showMenuView];
 
     self.needRefresh = YES;
@@ -811,6 +817,46 @@
         }];
     }
     return _barrageManager;
+}
+
+- (void)refreshCurrentCell:(int)row {
+    @weakify(self);
+    //NSLog(@"imageData%@",imageData);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView performWithoutAnimation:^{
+            @strongify(self);
+            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:row inSection:0];
+            [self.mainTableViewGroup reloadRowsAtIndexPaths:[NSArray arrayWithObjects:newIndexPath, nil] withRowAnimation:UITableViewRowAnimationNone];
+        }];
+    });
+}
+
+
+#pragma mark - WXYZ_ComicMenuSettingBarDelegate
+- (void)changeMode:(int)mode {
+    if (mode == self.selMode) {
+        return;
+    }
+    if (mode == 1) {
+        //对TableView要做的设置
+        self.mainTableViewGroup.transform = CGAffineTransformIdentity;
+        [self.mainTableViewGroup mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(0);
+            make.top.mas_equalTo(0);
+            make.width.mas_equalTo(self.mainBottomScrollView.mas_width);
+            make.height.mas_equalTo(self.mainBottomScrollView.mas_height);
+        }];
+    } else {
+        self.mainTableViewGroup.backgroundColor = [UIColor redColor];
+        //对TableView要做的设置
+        
+    }
+     self.selMode = mode;
+    [self.mainTableViewGroup reloadData];
+}
+
+- (void)dealloc {
+    [WXYZ_ComicMenuView sharedManager].delegate = nil;
 }
 
 @end

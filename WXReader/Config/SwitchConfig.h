@@ -45,7 +45,7 @@
 #define WX_Recharge_Mode 1
 
 // 是否开启三方支付
-#define WX_Third_Pay 0
+#define WX_Third_Pay 1
 
 // 是否使用推送功能
 #define WX_Enable_Push 1

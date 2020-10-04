@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol WXYZ_ChapterBottomPayBarDelegate <NSObject>
+
+- (void)showAlertView;
+
+@end
+
 typedef NS_ENUM(NSUInteger, WXYZ_BottomPayBarType) {
     WXYZ_BottomPayBarTypeDownload,
     WXYZ_BottomPayBarTypeBuyChapter
@@ -24,6 +30,8 @@ typedef void(^PayFailChaptersBlock)(NSArray <NSString *>*fail_chapter_ids);
 typedef void(^BottomPayBarHiddenBlock)(void);
 
 @interface WXYZ_ChapterBottomPayBar : UIView
+
+@property (nonatomic, weak) id<WXYZ_ChapterBottomPayBarDelegate>delegate;
 
 @property (nonatomic, copy) PaySuccessChaptersBlock paySuccessChaptersBlock;
 

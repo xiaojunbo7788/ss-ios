@@ -49,19 +49,33 @@
 {
     AppDelegate *app = (AppDelegate *)kRCodeSync([UIApplication sharedApplication].delegate);
     
-    self.bookVC = [[WXYZ_WebViewViewController alloc] init];
-    self.bookVC.URLString = app.checkSettingModel.web_view_url;
-    self.bookVC.OnTheFrontPage = YES;
-    [self.bookVC hiddenNavigationBar:YES];
+    if (app.checkSettingModel.web_view_urlist != nil && app.checkSettingModel.web_view_urlist.count > 0) {
+        [self succesState:app.checkSettingModel.web_view_urlist];
+    } else {
+        [self errorState];
+    }
+}
+
+- (void)succesState:(NSArray *)data {
     
-    NSArray *titleArr = @[@"娱乐"];
-    NSArray *childArr = @[self.bookVC];
-    CGFloat pageView_Width = 80;
+    
+    
+    NSMutableArray *titleArr = [[NSMutableArray alloc] init];
+    NSMutableArray *childArr = [[NSMutableArray alloc] init];
+    for (NSDictionary *dic in data) {
+        [titleArr addObject:dic[@"play_title"]];
+        WXYZ_WebViewViewController *bookVC = [[WXYZ_WebViewViewController alloc] init];
+        bookVC.isNoHiddenTab = true;
+        bookVC.URLString = dic[@"play_url"];
+        bookVC.OnTheFrontPage = YES;
+        [bookVC hiddenNavigationBar:YES];
+        [childArr addObject:bookVC];
+    }
+
 
     self.pageContentCollectionView = [[SGPageContentCollectionView alloc] initWithFrame:CGRectMake(0, PUB_NAVBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - PUB_TABBAR_HEIGHT - PUB_NAVBAR_HEIGHT) parentVC:self childVCs:childArr];
     _pageContentCollectionView.delegatePageContentCollectionView = self;
     [self.view addSubview:self.pageContentCollectionView];
-    
     self.pageConfigure.indicatorStyle = SGIndicatorStyleDynamic;
     self.pageConfigure.indicatorDynamicWidth = 24;
     self.pageConfigure.indicatorHeight = 3;
@@ -73,7 +87,38 @@
     self.pageConfigure.titleGradientEffect = YES;
     self.pageConfigure.titleTextZoomRatio = 0.5;
     self.pageConfigure.showIndicator = YES;
-    
+       
+    self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(kHalfMargin, (is_iPhoneX?kQuarterMargin:kHalfMargin) + kHalfMargin + PUB_NAVBAR_OFFSET, childArr.count * 60, pageView_H) delegate:self titleNames:titleArr configure:self.pageConfigure];
+    self.pageTitleView.backgroundColor = [UIColor clearColor];
+    [self.navigationBar addSubview:_pageTitleView];
+}
+
+- (void)errorState {
+     AppDelegate *app = (AppDelegate *)kRCodeSync([UIApplication sharedApplication].delegate);
+    self.bookVC = [[WXYZ_WebViewViewController alloc] init];
+    self.bookVC.URLString = app.checkSettingModel.web_view_url;
+    self.bookVC.OnTheFrontPage = YES;
+    [self.bookVC hiddenNavigationBar:YES];
+
+    NSArray *titleArr = @[@"娱乐"];
+    NSArray *childArr = @[self.bookVC];
+    CGFloat pageView_Width = 80;
+
+    self.pageContentCollectionView = [[SGPageContentCollectionView alloc] initWithFrame:CGRectMake(0, PUB_NAVBAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - PUB_TABBAR_HEIGHT - PUB_NAVBAR_HEIGHT) parentVC:self childVCs:childArr];
+    _pageContentCollectionView.delegatePageContentCollectionView = self;
+    [self.view addSubview:self.pageContentCollectionView];
+    self.pageConfigure.indicatorStyle = SGIndicatorStyleDynamic;
+    self.pageConfigure.indicatorDynamicWidth = 24;
+    self.pageConfigure.indicatorHeight = 3;
+    self.pageConfigure.indicatorFixedWidth = 10;
+    self.pageConfigure.indicatorToBottomDistance = 3;
+    self.pageConfigure.titleSelectedColor = kBlackColor;
+    self.pageConfigure.titleFont = kBoldFont16;
+    self.pageConfigure.titleTextZoom = YES;
+    self.pageConfigure.titleGradientEffect = YES;
+    self.pageConfigure.titleTextZoomRatio = 0.5;
+    self.pageConfigure.showIndicator = YES;
+       
     self.pageTitleView = [SGPageTitleView pageTitleViewWithFrame:CGRectMake(kHalfMargin, (is_iPhoneX?kQuarterMargin:kHalfMargin) + kHalfMargin + PUB_NAVBAR_OFFSET, pageView_Width, pageView_H) delegate:self titleNames:titleArr configure:self.pageConfigure];
     self.pageTitleView.backgroundColor = [UIColor clearColor];
     [self.navigationBar addSubview:_pageTitleView];

@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) StartPage *start_page;
 
 @property (nonatomic, copy) NSString *web_view_url;
+@property (nonatomic, copy) NSArray *web_view_urlist;
 
 /** 微信获取access_token的方法前缀 */
 @property (nonatomic, copy) NSString *wechatTokenURL;

@@ -9,7 +9,7 @@
 #import "WXYZ_ComicDirectoryListViewController.h"
 #import "WXYZ_ComicDirectoryListTableViewCell.h"
 
-#import "WXYZ_ComicReaderViewController.h"
+#import "WXYZ_ComicReaderViewController2.h"
 
 #import "WXYZ_ProductionReadRecordManager.h"
 
@@ -237,7 +237,7 @@
     WXYZ_ProductionChapterModel *t_chapterModel = [self.comicModel.chapter_list objectOrNilAtIndex:indexPath.row];
     [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] addReadingRecordWithProduction_id:t_chapterModel.production_id chapter_id:t_chapterModel.chapter_id chapterTitle:t_chapterModel.chapter_title];
     
-    WXYZ_ComicReaderViewController *vc = [[WXYZ_ComicReaderViewController alloc] init];
+    WXYZ_ComicReaderViewController2 *vc = [[WXYZ_ComicReaderViewController2 alloc] init];
     vc.comicProductionModel = self.comicModel;
     vc.chapter_id = t_chapterModel.chapter_id;
     [self.navigationController pushViewController:vc animated:YES];

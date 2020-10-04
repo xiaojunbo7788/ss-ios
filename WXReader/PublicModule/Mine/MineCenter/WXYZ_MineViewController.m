@@ -32,7 +32,7 @@
 #if WX_W_Share_Mode || WX_Q_Share_Mode
     #import "WXYZ_ShareManager.h"
 #endif
-
+#import "WXYZ_NewInviteViewController.h"
 #import "WXYZ_SticketLogViewController.h"
 #import "WXYZ_GiftLogViewController.h"
 #import "WXYZ_WebViewViewController.h"
@@ -199,7 +199,8 @@
 #endif
 
     if ([cell.cellModel.action isEqualToString:@"invite"] && cell.cellModel.enable) {
-        [self shareToFriend];
+         [self.navigationController pushViewController:[[WXYZ_NewInviteViewController alloc] init] animated:YES];
+//        [self shareToFriend];
     }
 
     if ([cell.cellModel.action isEqualToString:@"history"] && cell.cellModel.enable) {
@@ -325,9 +326,12 @@
 
 - (void)shareToFriend
 {
-#if WX_W_Share_Mode || WX_Q_Share_Mode
-    [[WXYZ_ShareManager sharedManager] shareApplicationInController:self shareState:WXYZ_ShareStateAll];    
-#endif
+//#if WX_W_Share_Mode || WX_Q_Share_Mode
+//    [[WXYZ_ShareManager sharedManager] shareApplicationInController:self shareState:WXYZ_ShareStateAll];
+//#endif
+    
+    
+    
 }
 
 - (void)netRequest

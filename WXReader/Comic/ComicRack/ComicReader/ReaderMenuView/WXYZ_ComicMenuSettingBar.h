@@ -10,9 +10,23 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol WXYZ_ComicMenuSettingBarDelegate <NSObject>
+
+- (void)changeMode:(int)mode;
+
+@end
+
 @interface WXYZ_ComicMenuSettingBar : UIView
 
+@property (nonatomic, weak) id<WXYZ_ComicMenuSettingBarDelegate>delegate;
+@property (nonatomic, strong) UIButton *leftButton;
+@property (nonatomic, strong) UIButton *rightButton;
+
+- (void)changeMode:(int)mode;
+
 - (void)showSettingBar;
+
+- (id)initWithMode:(int)mode;
 
 @end
 

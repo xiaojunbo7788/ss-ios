@@ -12,7 +12,7 @@
 #endif
 
 #if WX_Enable_Comic
-    #import "WXYZ_ComicReaderViewController.h"
+    #import "WXYZ_ComicReaderViewController2.h"
 #endif
 
 #if WX_Enable_Audio
@@ -166,7 +166,7 @@
 #if WX_Enable_Comic
                 case WXYZ_ProductionTypeComic:
                 {
-                    WXYZ_ComicReaderViewController *vc = [[WXYZ_ComicReaderViewController alloc] init];
+                    WXYZ_ComicReaderViewController2 *vc = [[WXYZ_ComicReaderViewController2 alloc] init];
                     [[WXYZ_ProductionCollectionManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] moveCollectionToTopWithProductionModel:productionModel];
                     vc.comicProductionModel = productionModel;
                     vc.chapter_id = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapter_idWithProduction_id:productionModel.production_id];

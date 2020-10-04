@@ -45,16 +45,21 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [WXYZ_ViewHelper setStateBarLightStyle];
-    if (!WXYZ_SystemInfoManager.agreementAllow) {
-        WXYZ_AgreementAlertView *alert = [[WXYZ_AgreementAlertView alloc] initInController];
-        alert.confirmButtonClickBlock = ^{
-            [self firstApplication:application didFinishLaunchingWithOptions:launchOptions];
-        };
-        [alert showAlertView];
-    } else {
-        [self firstApplication:application didFinishLaunchingWithOptions:launchOptions];
-    }
+//    if (!WXYZ_SystemInfoManager.agreementAllow) {
+//        WXYZ_AgreementAlertView *alert = [[WXYZ_AgreementAlertView alloc] initInController];
+//        alert.confirmButtonClickBlock = ^{
+//            [self firstApplication:application didFinishLaunchingWithOptions:launchOptions];
+//        };
+//        [alert showAlertView];
+//    } else {
+//        [self firstApplication:application didFinishLaunchingWithOptions:launchOptions];
+//    }
+//
+    [self firstApplication:application didFinishLaunchingWithOptions:launchOptions];
 
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NSString stringWithFormat:@"VerCodeButtonTime-login_timer"]];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     // 注册设备信息
     [self initDeviceInfo];
 

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WXYZ_ComicMenuSettingBar.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WXYZ_ComicMenuView : UIView
+
+@property (nonatomic, weak) id<WXYZ_ComicMenuSettingBarDelegate>delegate;
 
 @property (nonatomic, strong) WXYZ_ProductionModel *productionModel;
 
@@ -19,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) BOOL isShowing;
 
 interface_singleton
+
+- (void)changeMode:(int)mode;
 
 - (void)autoShowOrHiddenMenuView;
 

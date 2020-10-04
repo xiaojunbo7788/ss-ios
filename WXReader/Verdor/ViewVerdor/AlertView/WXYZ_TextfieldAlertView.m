@@ -80,7 +80,12 @@
     alertTF.text = [alertTF.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     if (alertTF.text.length == 0) {
-        [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeError alertTitle:@"昵称不能为空"];
+        if (self.isInvite) {
+             [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeError alertTitle:@"邀请码不能为空"];
+        } else {
+             [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeError alertTitle:@"昵称不能为空"];
+        }
+       
         return;
     }
     

@@ -20,6 +20,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) NSString *imgUrl;
 
+@property (nonatomic, copy) NSString *invite_code;
+@property (nonatomic, copy) NSString *bind_user;
+@property (nonatomic, copy) NSString *bind_code;
+@property (nonatomic, strong) NSDictionary *inviteInfo;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

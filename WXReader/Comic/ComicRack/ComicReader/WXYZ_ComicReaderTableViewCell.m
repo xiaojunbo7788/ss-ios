@@ -9,48 +9,91 @@
 #import "WXYZ_ComicReaderTableViewCell.h"
 #import "WXYZ_ComicDownloadManager.h"
 
+@interface WXYZ_ComicReaderTableViewCell ()
+
+@property (nonatomic, strong) UIImageView *chapterImageView;
+
+@end
 @implementation WXYZ_ComicReaderTableViewCell
-{
-    UIImageView *chapterImageView;
-}
+
 
 - (void)createSubviews
 {
     [super createSubviews];
     
-    chapterImageView = [[UIImageView alloc] init];
-    chapterImageView.contentMode = UIViewContentModeScaleAspectFill;
-    [self.contentView addSubview:chapterImageView];
+    self.chapterImageView = [[UIImageView alloc] init];
+    self.chapterImageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self.contentView addSubview:self.chapterImageView];
     
-    [chapterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.chapterImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left);
         make.top.mas_equalTo(self.contentView.mas_top);
-        make.width.mas_equalTo(self.contentView.mas_width);
+        make.right.mas_equalTo(self.contentView.mas_right);
         make.height.mas_equalTo(SCREEN_HEIGHT);
         make.bottom.mas_equalTo(self.contentView.mas_bottom).priorityLow();
     }];   
+}
+
+- (void)setSelModel:(int)selModel {
+    _selModel = selModel;
+
 }
 
 - (void)setImageModel:(WXYZ_ImageListModel *)imageModel
 {
     _imageModel = imageModel;
     
-    [chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(kGeometricHeight(SCREEN_WIDTH, imageModel.width <= 0?SCREEN_WIDTH:imageModel.width, imageModel.height <= 0?SCREEN_HEIGHT:imageModel.height));
-    }];
+//    [chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.width.mas_equalTo(SCREEN_WIDTH);
+//        if (imageModel.width == 0 || imageModel.height == 0) {
+//            make.height.mas_equalTo(kGeometricHeight(SCREEN_WIDTH, imageModel.width <= 0?SCREEN_WIDTH:imageModel.width, imageModel.height <= 0?SCREEN_HEIGHT:imageModel.height));
+//        } else {
+//            if (imageModel.width <= SCREEN_WIDTH) {
+//                make.height.mas_equalTo((float)(SCREEN_WIDTH/(imageModel.width*1.0)) * imageModel.height);
+//            } else {
+//                make.height.mas_equalTo((float)(imageModel.width*1.0/SCREEN_WIDTH) * imageModel.height);
+//            }
+//        }
+//    }];
+    if (imageModel.width !=0 && imageModel.height!=0) {
+    
+        [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(SCREEN_WIDTH);
+             if (imageModel.width <= SCREEN_WIDTH) {
+                make.height.mas_equalTo((float)(SCREEN_WIDTH/(imageModel.width*1.0)) * imageModel.height);
+             } else {
+                make.height.mas_equalTo((float)(imageModel.width*1.0/SCREEN_WIDTH) * imageModel.height);
+             }
+        }];
+    }
     
     // 查找内存中的图片缓存
     UIImage *cacheImage = [[YYImageCache sharedCache] getImageForKey:imageModel.image withType:YYImageCacheTypeMemory];
     
     // 如果有则使用缓存加载图片
     if (cacheImage) {
-        chapterImageView.image = cacheImage;
+        self.chapterImageView.image = cacheImage;
+        imageModel.width =cacheImage.size.width/[UIScreen mainScreen].scale;
+         imageModel.height =cacheImage.size.height/[UIScreen mainScreen].scale;
+        [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+           
+               if (imageModel.width == 0 || imageModel.height == 0) {
+                   make.height.mas_equalTo(kGeometricHeight(SCREEN_WIDTH, imageModel.width <= 0?SCREEN_WIDTH:imageModel.width, imageModel.height <= 0?SCREEN_HEIGHT:imageModel.height));
+               } else {
+                   if (imageModel.width <= SCREEN_WIDTH) {
+                       make.height.mas_equalTo((float)(SCREEN_WIDTH/(imageModel.width*1.0)) * imageModel.height);
+                   } else {
+                       make.height.mas_equalTo((float)(imageModel.width*1.0/SCREEN_WIDTH) * imageModel.height);
+                   }
+               }
+           }];
+        
     } else { // 缓存中不存在,则从本地查找图片,获取本地图片后,也放置内存中,提高运行速度
         
         // 查找沙盒中的文件
         UIImage *localImage = [[WXYZ_ComicDownloadManager sharedManager] getDownloadLocalImageWithProduction_id:self.comic_id chapter_id:self.chapter_id image_id:imageModel.image_id image_update_time:imageModel.image_update_time];
         if (localImage) {
-            chapterImageView.image = localImage;
+            self.chapterImageView.image = localImage;
             
             // 将沙盒中的文件存储到内存中
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -58,11 +101,38 @@
             });
             
         } else { // 沙盒中没有缓存图片
-            
             // 加载网络图片
-            [chapterImageView setImageWithURL:[NSURL URLWithString:imageModel.image] placeholder:HoldImage options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+            @weakify(self);
+            [self.chapterImageView setImageWithURL:[NSURL URLWithString:imageModel.image] placeholder:HoldImage options:YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+                @strongify(self);
+                if (error==nil && image != nil) {
+                    if (imageModel.width !=0 && imageModel.height!=0) {
+                        return;
+                    }
+                    imageModel.width =image.size.width/[UIScreen mainScreen].scale;
+                    imageModel.height =image.size.height/[UIScreen mainScreen].scale;
+                
+                    [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
+                        
+                        if (imageModel.width == 0 || imageModel.height == 0) {
+                            make.height.mas_equalTo(kGeometricHeight(SCREEN_WIDTH, imageModel.width <= 0?SCREEN_WIDTH:imageModel.width, imageModel.height <= 0?SCREEN_HEIGHT:imageModel.height));
+                        } else {
+                            if (imageModel.width <= SCREEN_WIDTH) {
+                                make.height.mas_equalTo((float)(SCREEN_WIDTH/(imageModel.width*1.0)) * imageModel.height);
+                            } else {
+                                make.height.mas_equalTo((float)(imageModel.width*1.0/SCREEN_WIDTH) * imageModel.height);
+                            }
+                        }
+                    }];
+                
+                    if (self.delegate != nil) {
+                        [self.delegate refreshCurrentCell:self.localRow];
+                    }
+                }
+            }];
         }
     }
 }
+
 
 @end

@@ -11,6 +11,7 @@
 
 @interface WXYZ_TextfieldAlertView : WXYZ_AlertView
 
+@property (nonatomic, assign) BOOL isInvite;
 @property (nonatomic, copy) void(^endEditedBlock)(NSString *inputText);
 
 @property (nonatomic, copy) NSString *placeHoldTitle;

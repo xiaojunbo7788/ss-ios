@@ -962,9 +962,19 @@
 		B1064B97250E036B006F3550 /* WXYZ_TagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B96250E036B006F3550 /* WXYZ_TagTableViewCell.m */; };
 		B1064B9A250E0894006F3550 /* WXYZ_TagBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B98250E0894006F3550 /* WXYZ_TagBookViewController.m */; };
 		B1064B9D250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B9C250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m */; };
+		B13F48062527059A00A980D3 /* WXYZ_NewInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F48052527059A00A980D3 /* WXYZ_NewInviteViewController.m */; };
+		B13F480A252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F4809252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m */; };
+		B13F480D252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F480C252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m */; };
+		B13F481125270AAB00A980D3 /* WXYZ_InviteTopBgView.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F481025270AAB00A980D3 /* WXYZ_InviteTopBgView.m */; };
+		B13F481525270BEF00A980D3 /* UILabel+WXCreate.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F481425270BEF00A980D3 /* UILabel+WXCreate.m */; };
 		B185806825038CA200C60C45 /* public_hold_image2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B185806625038CA100C60C45 /* public_hold_image2@2x.png */; };
 		B185806925038CA200C60C45 /* public_hold_image2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = B185806725038CA200C60C45 /* public_hold_image2@3x.png */; };
 		B185807125039ADD00C60C45 /* HCSStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B185807025039ADD00C60C45 /* HCSStarRatingView.m */; };
+		B1952345252797F0007856B1 /* WXYZ_PayTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1952344252797F0007856B1 /* WXYZ_PayTableViewCell.m */; };
+		B195234C2527A512007856B1 /* WXZY_CommonPayAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B195234B2527A512007856B1 /* WXZY_CommonPayAlertView.m */; };
+		B195234F2527A5D0007856B1 /* WXZY_PayButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B195234E2527A5D0007856B1 /* WXZY_PayButton.m */; };
+		B19523522527A767007856B1 /* WXZY_RechargeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B19523512527A767007856B1 /* WXZY_RechargeButton.m */; };
+		B19523552527BF58007856B1 /* WXYZ_InviteView.m in Sources */ = {isa = PBXBuildFile; fileRef = B19523542527BF58007856B1 /* WXYZ_InviteView.m */; };
 		B1B327FA2510E96400DBA764 /* WXYZ_TagHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1B327F92510E96400DBA764 /* WXYZ_TagHeadView.m */; };
 		B1BB89A02507DC1A00CF6369 /* WXYZ_AuthorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BB899F2507DC1A00CF6369 /* WXYZ_AuthorModel.m */; };
 		B1BB89A32507DCDC00CF6369 /* WXYZ_AuthorSiniciModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BB89A22507DCDC00CF6369 /* WXYZ_AuthorSiniciModel.m */; };
@@ -974,6 +984,9 @@
 		B1BB89B12507FC5700CF6369 /* WXYZ_CollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BB89B02507FC5700CF6369 /* WXYZ_CollectionViewCell.m */; };
 		B1C4C6792514848600244304 /* NSArray+SafeIndex.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C4C6752514848600244304 /* NSArray+SafeIndex.m */; };
 		B1C4C67A2514848600244304 /* NSMutableArray+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = B1C4C6782514848600244304 /* NSMutableArray+Extension.m */; };
+		B1D0911E252104D400BCD265 /* WXYZ_ComicReaderViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D0911D252104D400BCD265 /* WXYZ_ComicReaderViewController2.m */; };
+		B1D091212521064C00BCD265 /* WXYZ_ComicReaderCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D091202521064B00BCD265 /* WXYZ_ComicReaderCollectionCell.m */; };
+		B1D091272521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D091262521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.m */; };
 		B1D0B9F024FBD2140099DEE1 /* WXYZ_DetailHeadContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1D0B9EF24FBD2140099DEE1 /* WXYZ_DetailHeadContentView.m */; };
 		F7535D9723921D7D009A1BD3 /* NSObject+Observer.m in Sources */ = {isa = PBXBuildFile; fileRef = F7535D9623921D7C009A1BD3 /* NSObject+Observer.m */; };
 		F7535D9A23923962009A1BD3 /* UIView+LayoutCallback.m in Sources */ = {isa = PBXBuildFile; fileRef = F7535D9823923961009A1BD3 /* UIView+LayoutCallback.m */; };
@@ -2443,10 +2456,30 @@
 		B1064B99250E0894006F3550 /* WXYZ_TagBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXYZ_TagBookViewController.h; sourceTree = "<group>"; };
 		B1064B9B250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_SearchCollectionViewCell.h; sourceTree = "<group>"; };
 		B1064B9C250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_SearchCollectionViewCell.m; sourceTree = "<group>"; };
+		B13F48042527059A00A980D3 /* WXYZ_NewInviteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_NewInviteViewController.h; sourceTree = "<group>"; };
+		B13F48052527059A00A980D3 /* WXYZ_NewInviteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_NewInviteViewController.m; sourceTree = "<group>"; };
+		B13F4808252708C000A980D3 /* WXYZ_InviteTopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_InviteTopTableViewCell.h; sourceTree = "<group>"; };
+		B13F4809252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_InviteTopTableViewCell.m; sourceTree = "<group>"; };
+		B13F480B252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_InviteBottomTableViewCell.h; sourceTree = "<group>"; };
+		B13F480C252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_InviteBottomTableViewCell.m; sourceTree = "<group>"; };
+		B13F480F25270AAB00A980D3 /* WXYZ_InviteTopBgView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_InviteTopBgView.h; sourceTree = "<group>"; };
+		B13F481025270AAB00A980D3 /* WXYZ_InviteTopBgView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_InviteTopBgView.m; sourceTree = "<group>"; };
+		B13F481325270BEF00A980D3 /* UILabel+WXCreate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+WXCreate.h"; sourceTree = "<group>"; };
+		B13F481425270BEF00A980D3 /* UILabel+WXCreate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+WXCreate.m"; sourceTree = "<group>"; };
 		B185806625038CA100C60C45 /* public_hold_image2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public_hold_image2@2x.png"; sourceTree = "<group>"; };
 		B185806725038CA200C60C45 /* public_hold_image2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "public_hold_image2@3x.png"; sourceTree = "<group>"; };
 		B185806F25039ADD00C60C45 /* HCSStarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCSStarRatingView.h; sourceTree = "<group>"; };
 		B185807025039ADD00C60C45 /* HCSStarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCSStarRatingView.m; sourceTree = "<group>"; };
+		B1952343252797F0007856B1 /* WXYZ_PayTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_PayTableViewCell.h; sourceTree = "<group>"; };
+		B1952344252797F0007856B1 /* WXYZ_PayTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_PayTableViewCell.m; sourceTree = "<group>"; };
+		B195234A2527A512007856B1 /* WXZY_CommonPayAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXZY_CommonPayAlertView.h; sourceTree = "<group>"; };
+		B195234B2527A512007856B1 /* WXZY_CommonPayAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXZY_CommonPayAlertView.m; sourceTree = "<group>"; };
+		B195234D2527A5D0007856B1 /* WXZY_PayButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXZY_PayButton.h; sourceTree = "<group>"; };
+		B195234E2527A5D0007856B1 /* WXZY_PayButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXZY_PayButton.m; sourceTree = "<group>"; };
+		B19523502527A767007856B1 /* WXZY_RechargeButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXZY_RechargeButton.h; sourceTree = "<group>"; };
+		B19523512527A767007856B1 /* WXZY_RechargeButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXZY_RechargeButton.m; sourceTree = "<group>"; };
+		B19523532527BF58007856B1 /* WXYZ_InviteView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_InviteView.h; sourceTree = "<group>"; };
+		B19523542527BF58007856B1 /* WXYZ_InviteView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_InviteView.m; sourceTree = "<group>"; };
 		B1B327F82510E96400DBA764 /* WXYZ_TagHeadView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_TagHeadView.h; sourceTree = "<group>"; };
 		B1B327F92510E96400DBA764 /* WXYZ_TagHeadView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_TagHeadView.m; sourceTree = "<group>"; };
 		B1BB899E2507DC1A00CF6369 /* WXYZ_AuthorModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_AuthorModel.h; sourceTree = "<group>"; };
@@ -2465,6 +2498,12 @@
 		B1C4C6762514848600244304 /* NSMutableArray+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Extension.h"; sourceTree = "<group>"; };
 		B1C4C6772514848600244304 /* NSArray+SafeIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SafeIndex.h"; sourceTree = "<group>"; };
 		B1C4C6782514848600244304 /* NSMutableArray+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Extension.m"; sourceTree = "<group>"; };
+		B1D0911C252104D400BCD265 /* WXYZ_ComicReaderViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXYZ_ComicReaderViewController2.h; sourceTree = "<group>"; };
+		B1D0911D252104D400BCD265 /* WXYZ_ComicReaderViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXYZ_ComicReaderViewController2.m; sourceTree = "<group>"; };
+		B1D0911F2521064B00BCD265 /* WXYZ_ComicReaderCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXYZ_ComicReaderCollectionCell.h; sourceTree = "<group>"; };
+		B1D091202521064B00BCD265 /* WXYZ_ComicReaderCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXYZ_ComicReaderCollectionCell.m; sourceTree = "<group>"; };
+		B1D091252521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_ComicReaderAdapterCollectionViewCell.h; sourceTree = "<group>"; };
+		B1D091262521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_ComicReaderAdapterCollectionViewCell.m; sourceTree = "<group>"; };
 		B1D0B9EE24FBD2140099DEE1 /* WXYZ_DetailHeadContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_DetailHeadContentView.h; sourceTree = "<group>"; };
 		B1D0B9EF24FBD2140099DEE1 /* WXYZ_DetailHeadContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_DetailHeadContentView.m; sourceTree = "<group>"; };
 		E284F5B20C5CF890CF68D25D /* Pods-WXReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WXReader.debug.xcconfig"; path = "Target Support Files/Pods-WXReader/Pods-WXReader.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3736,6 +3775,7 @@
 		496E550820A9612300EEEC01 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				B13F48032527057300A980D3 /* NewInvite */,
 				B1BB89AA2507FA8F00CF6369 /* Collection */,
 				49C7108C20DA3CEE0059AE20 /* MineCenter */,
 				6A01C6D624853C6F00263B1C /* Gift */,
@@ -4339,6 +4379,8 @@
 				49CA36B6244F324000ACCF33 /* WXYZ_RechargeHeaderView.m */,
 				49B65FB020ECD51400D78F1F /* WXYZ_RechargeModel.h */,
 				49B65FB120ECD51400D78F1F /* WXYZ_RechargeModel.m */,
+				B1952343252797F0007856B1 /* WXYZ_PayTableViewCell.h */,
+				B1952344252797F0007856B1 /* WXYZ_PayTableViewCell.m */,
 			);
 			path = Recharge;
 			sourceTree = "<group>";
@@ -4881,6 +4923,9 @@
 		49ED93EF22A5092800566428 /* ComicReader */ = {
 			isa = PBXGroup;
 			children = (
+				B1D0911C252104D400BCD265 /* WXYZ_ComicReaderViewController2.h */,
+				B1D0911D252104D400BCD265 /* WXYZ_ComicReaderViewController2.m */,
+				B1D091152521047900BCD265 /* CollectionViewCell */,
 				49D951ED22AB4F8B0015D26F /* ReaderDownload */,
 				49D951DF22AA681B0015D26F /* ReaderDirectory */,
 				49ED93F922A525E500566428 /* ReaderMenuView */,
@@ -5529,6 +5574,48 @@
 			path = TagList;
 			sourceTree = "<group>";
 		};
+		B13F48032527057300A980D3 /* NewInvite */ = {
+			isa = PBXGroup;
+			children = (
+				B13F480E25270A9300A980D3 /* SubViews */,
+				B13F48072527089600A980D3 /* TableCell */,
+				B13F48042527059A00A980D3 /* WXYZ_NewInviteViewController.h */,
+				B13F48052527059A00A980D3 /* WXYZ_NewInviteViewController.m */,
+			);
+			path = NewInvite;
+			sourceTree = "<group>";
+		};
+		B13F48072527089600A980D3 /* TableCell */ = {
+			isa = PBXGroup;
+			children = (
+				B13F4808252708C000A980D3 /* WXYZ_InviteTopTableViewCell.h */,
+				B13F4809252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m */,
+				B13F480B252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.h */,
+				B13F480C252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m */,
+			);
+			path = TableCell;
+			sourceTree = "<group>";
+		};
+		B13F480E25270A9300A980D3 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				B13F480F25270AAB00A980D3 /* WXYZ_InviteTopBgView.h */,
+				B13F481025270AAB00A980D3 /* WXYZ_InviteTopBgView.m */,
+				B19523532527BF58007856B1 /* WXYZ_InviteView.h */,
+				B19523542527BF58007856B1 /* WXYZ_InviteView.m */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		B13F481225270BC900A980D3 /* Label */ = {
+			isa = PBXGroup;
+			children = (
+				B13F481325270BEF00A980D3 /* UILabel+WXCreate.h */,
+				B13F481425270BEF00A980D3 /* UILabel+WXCreate.m */,
+			);
+			path = Label;
+			sourceTree = "<group>";
+		};
 		B185806E25039ADD00C60C45 /* HCSStarRatingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -5536,6 +5623,19 @@
 				B185807025039ADD00C60C45 /* HCSStarRatingView.m */,
 			);
 			path = HCSStarRatingView;
+			sourceTree = "<group>";
+		};
+		B19523492527A4F0007856B1 /* Pay */ = {
+			isa = PBXGroup;
+			children = (
+				B195234A2527A512007856B1 /* WXZY_CommonPayAlertView.h */,
+				B195234B2527A512007856B1 /* WXZY_CommonPayAlertView.m */,
+				B195234D2527A5D0007856B1 /* WXZY_PayButton.h */,
+				B195234E2527A5D0007856B1 /* WXZY_PayButton.m */,
+				B19523502527A767007856B1 /* WXZY_RechargeButton.h */,
+				B19523512527A767007856B1 /* WXZY_RechargeButton.m */,
+			);
+			path = Pay;
 			sourceTree = "<group>";
 		};
 		B1BB89AA2507FA8F00CF6369 /* Collection */ = {
@@ -5560,9 +5660,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B1D091152521047900BCD265 /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				B1D0911F2521064B00BCD265 /* WXYZ_ComicReaderCollectionCell.h */,
+				B1D091202521064B00BCD265 /* WXYZ_ComicReaderCollectionCell.m */,
+				B1D091252521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.h */,
+				B1D091262521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.m */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		B1D0B9EA24FBD11A0099DEE1 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				B19523492527A4F0007856B1 /* Pay */,
+				B13F481225270BC900A980D3 /* Label */,
 				B185806E25039ADD00C60C45 /* HCSStarRatingView */,
 				B1D0B9EE24FBD2140099DEE1 /* WXYZ_DetailHeadContentView.h */,
 				B1D0B9EF24FBD2140099DEE1 /* WXYZ_DetailHeadContentView.m */,
@@ -6227,6 +6340,7 @@
 				4985BDBD229E6A2E005D7762 /* WXYZ_ComicListDetailViewController.m in Sources */,
 				6A70EC582449D8A500E0BB6A /* XHLaunchAdController.m in Sources */,
 				49501726234DB50800EFD929 /* UIViewController+Present.m in Sources */,
+				B1D0911E252104D400BCD265 /* WXYZ_ComicReaderViewController2.m in Sources */,
 				4902147024EA737200AB2CF7 /* WXYZ_ComicInfoListTableViewCell.m in Sources */,
 				49A983FF23B5A89E00DD7B72 /* WXYZ_FeedbackPhotoTableViewCell.m in Sources */,
 				4924C27920B6FE66009A9664 /* UIView+BorderLine.m in Sources */,
@@ -6284,6 +6398,7 @@
 				499F098D2192DE5800A82F06 /* AppDelegate+Score.m in Sources */,
 				496DE8C822521DE9006406ED /* WXYZ_ShareManager.m in Sources */,
 				49EADF8220F5B05F00A6F80E /* WXYZ_SettingSwitchTableViewCell.m in Sources */,
+				B13F481125270AAB00A980D3 /* WXYZ_InviteTopBgView.m in Sources */,
 				4974B25C215CB1D500623351 /* WXYZ_ShareView.m in Sources */,
 				494AA02920B25ACC0079AE55 /* WXYZ_BookMallBasicStyleTableViewCell.m in Sources */,
 				49D839F420D3C95600BF01DC /* WXYZ_MemberViewController.m in Sources */,
@@ -6293,6 +6408,7 @@
 				49438E6722BB72F7007FFFDC /* WXYZ_MallRecommendModel.m in Sources */,
 				49219AAF239F39000048F362 /* WXYZ_ADWebView.m in Sources */,
 				4936F1E424B0ABA5000EDCB5 /* WXYZ_KeyboardManager.m in Sources */,
+				B195234C2527A512007856B1 /* WXZY_CommonPayAlertView.m in Sources */,
 				49B65FAC20ECCF6B00D78F1F /* WXYZ_RechargeViewController.m in Sources */,
 				49CD561621F9F610004A2BAC /* CYLPlusButton.m in Sources */,
 				496DE8D022522E81006406ED /* WXYZ_HistoryTableViewCell.m in Sources */,
@@ -6365,6 +6481,7 @@
 				49BF155D237666820030FEDA /* MJRefreshAutoFooter.m in Sources */,
 				49A9843A23B7370D00DD7B72 /* WXYZ_FeedbackListModel.m in Sources */,
 				6A61390B24CB150C0018CD9A /* WXYZ_GiftAlertView.m in Sources */,
+				B13F480D252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m in Sources */,
 				6A70EC562449D8A500E0BB6A /* XHLaunchAdConst.m in Sources */,
 				490E1A412299A810004E903A /* WXYZ_ComicMiddleSytleTableViewCell.m in Sources */,
 				493AA47820C8CA50004035A0 /* WXYZ_ReaderBookManager.m in Sources */,
@@ -6398,6 +6515,7 @@
 				4949C54A21BB782100E15013 /* WXYZ_AnnouncementView.m in Sources */,
 				6AFF294224CEEE900035D830 /* WXYZ_BookMarkCell.m in Sources */,
 				49AEA1A222B8D212003FDE42 /* WXYZ_HistoryPageViewController.m in Sources */,
+				B13F481525270BEF00A980D3 /* UILabel+WXCreate.m in Sources */,
 				49BAC7522298048900C32801 /* WXYZ_MallCenterViewController.m in Sources */,
 				491F2737219D489F00380C31 /* AppDelegate+LaunchAD.m in Sources */,
 				490E1A3E2299A78B004E903A /* WXYZ_ComicNormalVerticalCollectionViewCell.m in Sources */,
@@ -6416,6 +6534,7 @@
 				495BD4F420ADCFEC0086A8FA /* UIView+SGPagingView.m in Sources */,
 				6AFF2B5224D153B70035D830 /* WXYZ_ADPangolinVideo.m in Sources */,
 				498C7DB820E248CB008B8763 /* WXYZ_CommentsViewController.m in Sources */,
+				B195234F2527A5D0007856B1 /* WXZY_PayButton.m in Sources */,
 				4958E2C720BA62B6007EA5EF /* WXYZ_CommentsTableViewCell.m in Sources */,
 				49CA36B4244F28FC00ACCF33 /* WXYZ_RechargeTableViewCell.m in Sources */,
 				493F93122419DB1200C1AAE2 /* WXYZ_AudioMallDetailViewController.m in Sources */,
@@ -6502,6 +6621,7 @@
 				6A656B1424C5CAEC00F71263 /* WXYZ_MagicMineViewController.m in Sources */,
 				490BECE420D8F6790063F6F3 /* WXYZ_LimitFreeViewController.m in Sources */,
 				491C877C22EAB2A80076B9A4 /* TTRangeSlider.m in Sources */,
+				B13F480A252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m in Sources */,
 				494D68CF21B18601002E5BC1 /* WXYZ_UpdateAlertView.m in Sources */,
 				49EE35BB23ADFF4800D4C148 /* WXYZ_PushSettingModel.m in Sources */,
 				49549EE920B5190A00C787F0 /* WXYZ_BookMallDetailViewController.m in Sources */,
@@ -6512,6 +6632,7 @@
 				F7535D9723921D7D009A1BD3 /* NSObject+Observer.m in Sources */,
 				4984EB63241A3A1C000B3FEF /* WXYZ_AudioSoundDetailModel.m in Sources */,
 				4948DC0A22B1F62D00D9D13C /* WXYZ_CompositeEmbeddedTableView.m in Sources */,
+				B13F48062527059A00A980D3 /* WXYZ_NewInviteViewController.m in Sources */,
 				49747FAF22AFDB9000B156B3 /* WXYZ_ComicDownloadManagementViewController.m in Sources */,
 				6A70EC642449DAB800E0BB6A /* FLAnimatedImage.m in Sources */,
 				494106FB24EA87F800220B0A /* WXYZ_BookMallDetailIntroductionTableViewCell.m in Sources */,
@@ -6523,6 +6644,7 @@
 				49BF1559237666820030FEDA /* MJRefreshGifHeader.m in Sources */,
 				49FDA7232398DF4700915A6C /* WXYZ_PushSettingViewController.m in Sources */,
 				6A425FF8246A3373007E8032 /* OCBarrageTrackInfo.m in Sources */,
+				B1952345252797F0007856B1 /* WXYZ_PayTableViewCell.m in Sources */,
 				4966049220EA9B63006BD37F /* UINavigationController+DZM.m in Sources */,
 				493F9320241A164800C1AAE2 /* WXYZ_AudioSoundDirectoryViewController.m in Sources */,
 				49CD561A21F9F610004A2BAC /* UIViewController+CYLTabBarControllerExtention.m in Sources */,
@@ -6606,6 +6728,7 @@
 				49C9327024445B2100024397 /* WXYZ_AppraiseDetailHeaderView.m in Sources */,
 				496EBC4822C25B4B0027BE8B /* WXYZ_LimitTimeFreeViewController.m in Sources */,
 				6A425FF3246A3373007E8032 /* OCBarrageDescriptor.m in Sources */,
+				B1D091212521064C00BCD265 /* WXYZ_ComicReaderCollectionCell.m in Sources */,
 				6A4B19EA247EB6E000440791 /* WXYZ_GiftView.m in Sources */,
 				49CA369F244E965600ACCF33 /* WXYZ_MemberPrivilegeTableViewCell.m in Sources */,
 				49749BF020EF1C6C00D97F66 /* WXYZ_LoginViewController.m in Sources */,
@@ -6627,6 +6750,7 @@
 				498C19C62295752800A81677 /* WXYZ_RackCenterViewController.m in Sources */,
 				496E54EE20A9602300EEEC01 /* AppDelegate.m in Sources */,
 				49C1F42222A0117E00327682 /* WXYZ_ComicDirectoryListTableViewCell.m in Sources */,
+				B19523522527A767007856B1 /* WXZY_RechargeButton.m in Sources */,
 				4989BD7A24CEBD7B00633CE8 /* WXYZ_ChapterBottomPayBarOptionTableViewCell.m in Sources */,
 				49AACFC821A27BE600A26C9A /* AppDelegate+Insterest.m in Sources */,
 				493F932A241A1B6C00C1AAE2 /* WXYZ_AudioSoundDirectoryTableViewCell.m in Sources */,
@@ -6637,6 +6761,7 @@
 				49BAC6DA2296BF9B00C32801 /* WXYZ_ComicMallCenterViewController.m in Sources */,
 				4903076020AECEA600A7A12B /* YJBannerViewCell.m in Sources */,
 				6A504502247E03EA00482DD6 /* WXYZ_BookBackSideViewController.m in Sources */,
+				B19523552527BF58007856B1 /* WXYZ_InviteView.m in Sources */,
 				49BD25AD20FF1F5E003E92E6 /* WXYZ_TextfieldAlertView.m in Sources */,
 				49BF151F237665E50030FEDA /* WXYZ_BubblesFooter.m in Sources */,
 				4903075E20AECEA600A7A12B /* YJAnimatedDotView.m in Sources */,
@@ -6699,6 +6824,7 @@
 				491C10D524B056D000B00E32 /* WXYZ_BookMallBasicModuleCollectionViewCell.m in Sources */,
 				494A60B12424EFCA00FBE116 /* WXYZ_TouchAssistantView.m in Sources */,
 				4910A1C22434755300F1B14A /* WXYZ_BookDownloadMenuBarTableViewCell.m in Sources */,
+				B1D091272521077400BCD265 /* WXYZ_ComicReaderAdapterCollectionViewCell.m in Sources */,
 				49F56D4922B34DC9005249F5 /* WXYZ_BannerModel.m in Sources */,
 				49E1070623C4387D0077F428 /* WXYZ_AgreementAlertView.m in Sources */,
 				49749BF620EF51A700D97F66 /* WXYZ_SendCodeButton.m in Sources */,
@@ -6873,7 +6999,7 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -6962,7 +7088,7 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.1.8;
+				MARKETING_VERSION = 1.1.9;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

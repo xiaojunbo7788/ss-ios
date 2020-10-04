@@ -9,7 +9,7 @@
 #import "WXZY_CollectionBookViewController.h"
 #import "WXYZ_HistoryTableViewCell.h"
 #import "WXYZ_BookReaderViewController.h"
-#import "WXYZ_ComicReaderViewController.h"
+#import "WXYZ_ComicReaderViewController2.h"
 #import "WXYZ_ProductionReadRecordManager.h"
 #import "WXYZ_ProductionCollectionManager.h"
 @interface WXZY_CollectionBookViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -111,7 +111,7 @@
     cell.productionModel = productionModel;
     cell.hiddenEndLine = self.dataSourceArray.count - 1 == indexPath.row;
     cell.continueReadBlock = ^(NSInteger book_id) {
-    WXYZ_ComicReaderViewController *vc = [[WXYZ_ComicReaderViewController alloc] init];
+    WXYZ_ComicReaderViewController2 *vc = [[WXYZ_ComicReaderViewController2 alloc] init];
     [[WXYZ_ProductionCollectionManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] moveCollectionToTopWithProductionModel:productionModel];
     vc.comicProductionModel = productionModel;
     vc.chapter_id = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapter_idWithProduction_id:productionModel.production_id];

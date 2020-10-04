@@ -26,6 +26,10 @@
              };
 }
 
+- (BOOL)thirdOn {
+    return true;
+}
+
 @end
 
 @implementation WXYZ_GoodsModel
@@ -40,5 +44,6 @@
 @end
 
 @implementation WXYZ_PayModel
+
 
 @end
