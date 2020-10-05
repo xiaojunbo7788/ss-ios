@@ -90,12 +90,12 @@
             }];
         }
     } else {
-        [buyChapterButton setTitle:@"登录后购买" forState:UIControlStateNormal];
+        [buyChapterButton setTitle:@"登录领取免费书卷" forState:UIControlStateNormal];
         [buyChapterButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(self.contentView.mas_right).with.offset(- kMargin);
             make.centerY.mas_equalTo(self.contentView.mas_centerY);
             make.height.mas_equalTo(35);
-            make.width.mas_equalTo(100);
+            make.width.mas_equalTo(135);
         }];
     }
     

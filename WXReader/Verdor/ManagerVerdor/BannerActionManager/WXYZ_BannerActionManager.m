@@ -15,7 +15,7 @@
 #import "WXYZ_FeedbackSubViewController.h"
 #import "WXYZ_SettingViewController.h"
 
-
+#import "WXYZ_NewInviteViewController.h"
 #import "WXYZ_WebViewViewController.h"
 
 @implementation WXYZ_BannerActionManager
@@ -73,6 +73,8 @@
                 return [[WXYZ_FeedbackSubViewController alloc] init];
             } else if ([bannerModel.content isEqualToString:@"setting"]) { // 设置
                 return [[WXYZ_SettingViewController alloc] init];
+            } else if ([bannerModel.content isEqualToString:@"invite"]) { // 邀请好友
+                return [[WXYZ_NewInviteViewController alloc] init];
             }
         }
             break;

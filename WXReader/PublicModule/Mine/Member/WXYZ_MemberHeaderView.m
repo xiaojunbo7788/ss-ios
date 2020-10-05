@@ -162,7 +162,7 @@
         } else {
              _bannerView.hidden = false;
 //            self.bannerView.frame = CGRectMake(0, kHalfMargin, SCREEN_WIDTH, SCREEN_WIDTH / 4);
-            self.frame = CGRectMake(0, 10, SCREEN_WIDTH, (PUB_NAVBAR_HEIGHT + kGeometricHeight(SCREEN_WIDTH - kMargin, 1053, 215) + 30)+SCREEN_WIDTH / 4);
+            self.frame = CGRectMake(0, 0, SCREEN_WIDTH, (PUB_NAVBAR_HEIGHT + kGeometricHeight(SCREEN_WIDTH - kMargin, 1053, 215) + 30)+SCREEN_WIDTH / 4+20);
             for (WXYZ_BannerModel *t_model in banner) {
                 [_bannerImageArr addObject:t_model.image];
             }

@@ -17,6 +17,8 @@
 #import "WXYZ_RechargeModel.h"
 #import "WXYZ_PayTableViewCell.h"
 #import "WXYZ_WebViewViewController.h"
+#import "WXYZ_BannerActionManager.h"
+#import "WXYZ_MonthlyModel.h"
 #if !WX_Third_Pay
     #import "IAPManager.h"
 #endif
@@ -113,6 +115,12 @@
     
     self.headerView = [[WXYZ_RechargeHeaderView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, PUB_NAVBAR_HEIGHT + 60 + 2 * kMargin)];
     [self.mainTableViewGroup setTableHeaderView:self.headerView];
+    WS(weakSelf)
+    self.headerView.bannerrImageClickBlock = ^(WXYZ_BannerModel *bannerModel) {
+        if ([WXYZ_BannerActionManager getBannerActionWithBannerModel:bannerModel productionType:weakSelf.productionType]) {
+            [weakSelf.navigationController pushViewController:[WXYZ_BannerActionManager getBannerActionWithBannerModel:bannerModel productionType:weakSelf.productionType] animated:YES];
+        }
+    };
     
     UIView *toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - PUB_TABBAR_HEIGHT, SCREEN_WIDTH, PUB_TABBAR_HEIGHT)];
     toolBar.backgroundColor = kWhiteColor;
@@ -398,6 +406,22 @@
         }
         [weakSelf.mainTableViewGroup reloadData];
     } failure:nil];
+    
+    
+    [WXYZ_NetworkRequestManger POST:Member_Monthly parameters:@{@"site_id":@"2"} model:WXYZ_MonthlyModel.class success:^(BOOL isSuccess, WXYZ_MonthlyModel *_Nullable t_model, WXYZ_NetworkRequestModel *requestModel) {
+                   
+              weakSelf.headerView.banner = t_model.banner;
+
+              [weakSelf.mainTableViewGroup setTableHeaderView:weakSelf.headerView];
+
+              [weakSelf.mainTableViewGroup endRefreshing];
+
+              [weakSelf.mainTableViewGroup reloadData];
+
+          } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+
+          }];
 }
 
 @end
