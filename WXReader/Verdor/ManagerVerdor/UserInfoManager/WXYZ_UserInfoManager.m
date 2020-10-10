@@ -31,6 +31,18 @@ static WXYZ_UserInfoManager * _userInfoInstance;
     if ([[NSFileManager defaultManager] fileExistsAtPath:WXYZ_UserInfoManager.userInfoPath] && kObjectIsEmpty(_userInfoInstance.token)) {
         _userInfoInstance = [NSKeyedUnarchiver unarchiveObjectWithFile:WXYZ_UserInfoManager.userInfoPath];
     }
+    
+    NSString *line_data = [[NSUserDefaults standardUserDefaults]objectForKey:@"line_data"];
+    if (line_data != nil && line_data.length > 0) {
+        _lineData = [line_data integerValue];
+    }
+    
+    NSString *clear_data = [[NSUserDefaults standardUserDefaults]objectForKey:@"clear_data"];
+    if (clear_data != nil && clear_data.length > 0) {
+        _clearData = [clear_data integerValue];
+    }
+    
+    
     return _userInfoInstance;
 }
 
@@ -142,6 +154,19 @@ static NSDictionary<NSString *, NSString *> *_property;
 
 + (NSString *)userInfoPath {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject stringByAppendingPathComponent:@"userInfo"];
+}
+
+
+- (void)setLineData:(NSInteger)lineData {
+    _lineData = lineData;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%li",lineData] forKey:@"line_data"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)setClearData:(NSInteger)clearData {
+    _clearData = clearData;
+    [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%li",clearData] forKey:@"clear_data"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

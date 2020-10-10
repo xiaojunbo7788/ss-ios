@@ -9,7 +9,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void(^onClick)(int type);
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *msg;
-
+@property (nonatomic, assign) BOOL isShowRecharge;
 - (void)showInView:(UIView *)view;
 - (void)hide;
 

@@ -72,7 +72,7 @@ static NSString * const kData = @"data";
     [manager POST:url parameters:parameters headers:@{@"Content-Type":@"application/json", @"Accept":@"application/json"} progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *dic = [NSDictionary dictionaryWithDictionary:responseObject];
 #if defined(DEBUG) && DEBUG
-        NSLog(@"========== %@",dic);
+        NSLog(@"response ========== url = %@ data=%@",url,dic);
         #endif
         WXYZ_NetworkRequestModel *requestModel = [[WXYZ_NetworkRequestModel alloc] init];
         requestModel.task = task;
@@ -119,6 +119,7 @@ static NSString * const kData = @"data";
     [integrationParament setObject:@"1" forKey:@"osType"];
     [integrationParament setObject:@"1" forKey:@"appId"];
     [integrationParament setObject:@"1" forKey:@"product"];
+    [integrationParament setObject:APP_BUILD forKey:@"bversion"];
     [integrationParament setObject:@"AppStore" forKey:@"marketChannel"];
     [integrationParament setObject:[[NSBundle mainBundle] bundleIdentifier] forKey:@"packageName"];
     [integrationParament setObject:[WXYZ_UtilsHelper getTimeStamp] ?: @"" forKey:@"time"];

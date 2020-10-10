@@ -80,14 +80,12 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
 - (void)createSubviews
 {
     if (self.form != nil && self.form.length > 0) {
-        NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
-        //加载网页
-        [self.WKWebView loadRequest:request];
+        
     } else {
-//        [self.WKWebView loadHTMLString:self.form baseURL:nil];
-        //加载网页
-//        [self.WKWebView loadRequest:request];
-    }
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.URLString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10];
+    //加载网页
+    [self.WKWebView loadRequest:request];
+}
     
 }
 
@@ -292,7 +290,7 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
         // 设置代理
         _WKWebView.navigationDelegate = self;
         _WKWebView.UIDelegate = self;
-        
+        _WKWebView.configuration.allowsInlineMediaPlayback = YES;
         WS(weakSelf)
         //kvo 添加进度监控
         [_WKWebView addObserver:NSStringFromSelector(@selector(estimatedProgress)) complete:^(WKWebView * _Nonnull obj, id  _Nullable oldVal, id  _Nullable newVal) {
@@ -348,6 +346,35 @@ static void *WkwebBrowserContext = &WkwebBrowserContext;
     }
     return _snapShotsArray;
 }
+
+// 加载 HTTPS 的链接，需要权限认证时调用  \  如果 HTTPS 是用的证书在信任列表中这不要此代理方法
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *_Nullable))completionHandler
+{
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+        if (challenge.previousFailureCount == 0) {
+            NSURLCredential *credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            completionHandler(NSURLSessionAuthChallengeUseCredential, credential);
+        } else {
+            completionHandler(NSURLSessionAuthChallengeCancelAuthenticationChallenge, nil);
+        }
+    }
+}
+
+// 在收到响应后，决定是否跳转
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
+    
+    decisionHandler(WKNavigationResponsePolicyAllow);
+}
+
+
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+    if (!navigationAction.targetFrame.isMainFrame) {
+        [webView loadRequest:navigationAction.request];
+    }
+    return nil;
+
+}
+
 
 - (void)dealloc {
     [_WKWebView.configuration.userContentController removeScriptMessageHandlerForName:@"handleGoMall"];

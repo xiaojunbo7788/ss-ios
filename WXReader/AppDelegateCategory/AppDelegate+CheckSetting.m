@@ -10,7 +10,7 @@
 #import "AppDelegate+Insterest.h"
 #import "AppDelegate+StartTimes.h"
 #import "WXYZ_UpdateAlertView.h"
-
+#import "WXZY_NoticeAlertView.h"
 
 @implementation AppDelegate (CheckSetting)
 
@@ -47,16 +47,13 @@
             if (state == 1) {
                 // 更新提醒
                 switch (weakSelf.checkSettingModel.version_update.status) {
-                    case 0:
-                        
-                        break;
                     case 1: // 弱更新
                     {
                         WXYZ_UpdateAlertView *alert = [[WXYZ_UpdateAlertView alloc] init];
                         alert.updateMessage = weakSelf.checkSettingModel.version_update.msg;
                         alert.confirmButtonClickBlock = ^{
-                            if (weakSelf.checkSettingModel.version_update.url.length > 0) {
-                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weakSelf.checkSettingModel.version_update.url] options:@{} completionHandler:nil];
+                            if (weakSelf.checkSettingModel.version_update.url2.length > 0) {
+                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weakSelf.checkSettingModel.version_update.url2] options:@{} completionHandler:nil];
                             } else {
                                 [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeError alertTitle:@"更新地址错误"];
                             }
@@ -71,8 +68,8 @@
                         alert.alertViewDisappearType = WXYZ_AlertViewDisappearTypeNever;
                         alert.alertButtonType = WXYZ_AlertButtonTypeSingleConfirm;
                         alert.confirmButtonClickBlock = ^{
-                            if (weakSelf.checkSettingModel.version_update.url.length > 0) {
-                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weakSelf.checkSettingModel.version_update.url] options:@{} completionHandler:nil];
+                            if (weakSelf.checkSettingModel.version_update.url2.length > 0) {
+                                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:weakSelf.checkSettingModel.version_update.url2] options:@{} completionHandler:nil];
                             } else {
                                 [WXYZ_TopAlertManager showAlertWithType:WXYZ_TopAlertTypeError alertTitle:@"更新地址错误"];
                             }
@@ -81,7 +78,15 @@
                     }
                         break;
                         
-                    default:
+                    default: {
+                        //TODO:fix
+                        if (weakSelf.checkSettingModel.system_notice != nil && weakSelf.checkSettingModel.system_notice.length > 0) {
+                            WXZY_NoticeAlertView *noticeAlertView = [[WXZY_NoticeAlertView alloc]initWithFrame:CGRectZero];
+                            noticeAlertView.msg = weakSelf.checkSettingModel.system_notice;
+                            [noticeAlertView showInView:[UIApplication sharedApplication].keyWindow];
+                        }
+                                       
+                    }
                         break;
                 }
                 
@@ -96,8 +101,12 @@
 #endif
                 
             } else {
+                
                 [[NSNotificationCenter defaultCenter] postNotificationName:Notification_Check_Setting_Update object:nil];
+                
             }
+            
+            
             
             // 系统设置参数保存
             WXYZ_SystemInfoManager.masterUnit = weakSelf.checkSettingModel.system_setting.currencyUnit;

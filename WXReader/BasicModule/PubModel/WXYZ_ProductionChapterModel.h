@@ -116,6 +116,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) NSInteger image_update_time;
 
+@property (nonatomic, assign) BOOL isUpdateImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

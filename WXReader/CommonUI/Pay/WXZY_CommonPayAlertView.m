@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIView *lineView;
 @property (nonatomic, strong) UIView *centerLineView;
 
+
 @end
 
 @implementation WXZY_CommonPayAlertView
@@ -131,7 +132,7 @@
         make.centerY.mas_equalTo(self.mas_centerY).offset(-20);
         make.left.mas_equalTo(self.mas_left).offset(33);
         make.right.mas_equalTo(self.mas_right).offset(-33);
-        make.height.mas_greaterThanOrEqualTo(261);
+        make.height.mas_greaterThanOrEqualTo(180);
     }];
 
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -197,6 +198,25 @@
         make.top.right.bottom.equalTo(self.bottomView);
     }];
 
+}
+
+- (void)setIsShowRecharge:(BOOL)isShowRecharge {
+    _isShowRecharge = isShowRecharge;
+    self.rechargeButton.hidden = true;
+    [self.rechargeButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.contentView.mas_centerX);
+        make.width.mas_equalTo(164);
+        make.height.mas_equalTo(0);
+        make.top.mas_equalTo(self.vipButton.mas_bottom).offset(0);
+    }];
+    
+    [self.msgLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.contentView.mas_left).offset(14);
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-14);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(17);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-130).priorityLow();
+    }];
+    [self layoutIfNeeded];
 }
 
 - (void)setTitle:(NSString *)title {

@@ -31,6 +31,7 @@
     _author_note = author_note;
 }
 
+
 @end
 
 @implementation WXYZ_ImageListModel
@@ -39,6 +40,46 @@
     return @{
              @"image_update_time":@"update_time"
              };
+}
+
+- (void)setWidth:(NSInteger)width {
+    
+    _width = width/[UIScreen mainScreen].scale;
+    
+}
+
+- (void)setHeight:(NSInteger)height {
+    _height = height/[UIScreen mainScreen].scale;
+}
+
+
+- (NSString *)image {
+    if (_isUpdateImage) {
+        return _image;
+    }
+    if ([WXYZ_UserInfoManager shareInstance].clearData == 0) {
+        if (_image != nil && _image.length > 0) {
+            NSArray *imgs = [_image componentsSeparatedByString:@"/"];
+            NSString *newImg = @"";
+            for (int i = 0; i < imgs.count; i++) {
+                if (i == imgs.count -1) {
+                    newImg = [NSString stringWithFormat:@"%@%@",newImg,@"900/"];
+                    newImg = [NSString stringWithFormat:@"%@%@",newImg,imgs[i]];
+                } else {
+                    newImg = [NSString stringWithFormat:@"%@%@/",newImg,imgs[i]];
+                }
+            }
+            _isUpdateImage = true;
+            _image = newImg;
+            return _image;
+        } else {
+            _isUpdateImage = true;
+            return @"";
+        }
+    } else {
+        _isUpdateImage = true;
+        return _image;
+    }
 }
 
 @end

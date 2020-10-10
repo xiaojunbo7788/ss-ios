@@ -61,6 +61,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1]  //十六进制颜色(不带透�
 #define kBlackTransparentAlphaColor(x) kColorRGBA(0, 0, 0, x)
 
 #define HoldImage [UIImage imageNamed:@"public_hold_image"]
+#define IMGHoldImage [UIImage imageNamed:@"pic_default"]
 #define HoldUserAvatar [UIImage imageNamed:@"hold_user_avatar_boy"]
 
 #endif /* ColorConfig_h */

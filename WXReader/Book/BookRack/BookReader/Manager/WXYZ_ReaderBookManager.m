@@ -735,7 +735,17 @@ implementation_singleton(WXYZ_ReaderBookManager)
 
 - (void)appendAuthorNoteWithContainer:(TYTextContainer *)textContainer {
     NSAttributedString *atr = [textContainer attributedText];
+
+    //TODO:fix
+    NSRange lastRange = [_chapterRangeArray.lastObject rangeValue];
+    if (atr.length < (lastRange.location + lastRange.length)) {
+        NSInteger limitLength = lastRange.length - ((lastRange.location + lastRange.length) - atr.length);
+        [_chapterRangeArray replaceObjectAtIndex:_chapterRangeArray.count-1 withObject:[NSValue valueWithRange:NSMakeRange(lastRange.location, limitLength)]];
+    }
     NSAttributedString *str = [atr attributedSubstringFromRange:[_chapterRangeArray.lastObject rangeValue]];
+   
+   
+    
     
     CGFloat __block textHeight = 0;
     kCodeSync({

@@ -138,19 +138,20 @@
         titBtn.clipsToBounds = YES;
         
        
-        //判断按钮是否超过屏幕的宽
-        if ((titBtnX + titBtnW) > kScreenW) {
-            titBtnX = 0;
-            titBtnY += titBtnH + padding;
-        }
-        NSString *title = titBtn.text;
         if (![objc isKindOfClass:[NSString class]]) {
+            //判断按钮是否超过屏幕的宽
+            if ((titBtnX + titBtnW+29) > kScreenW) {
+                titBtnX = 0;
+                titBtnY += titBtnH + padding;
+            }
+            NSString *title = titBtn.text;
+            
              titBtn.textAlignment = NSTextAlignmentLeft;
             //设置按钮的位置
             titBtn.frame = CGRectMake(titBtnX, titBtnY, titBtnW+29, titBtnH);
             titBtn.text = [NSString stringWithFormat:@"   %@",titBtn.text];
             int x = titBtnX;
-            titBtnX += titBtnW + padding;
+            titBtnX += titBtnW + padding + 29;
             WXYZ_CollectionModel *collectModel = (WXYZ_CollectionModel *)objc;
              [self.collectArray addObject:[NSString stringWithFormat:@"%i",collectModel.is_collect]];
             UIButton *collecBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -166,6 +167,12 @@
             [self addButton:title frame:titBtn.frame];
             [backView addSubview:collecBtn];
         } else {
+            //判断按钮是否超过屏幕的宽
+            if ((titBtnX + titBtnW) > kScreenW) {
+                titBtnX = 0;
+                titBtnY += titBtnH + padding;
+            }
+            NSString *title = titBtn.text;
             titBtn.textAlignment = NSTextAlignmentCenter;
             //设置按钮的位置
             titBtn.frame = CGRectMake(titBtnX, titBtnY, titBtnW, titBtnH);

@@ -19,6 +19,10 @@
 // App版本
 #define App_Ver [NSString stringWithString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]]
 
+ /** 获取APP build版本 */
+
+#define APP_BUILD ([[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"])
+
 // App名称
 #define App_Name [NSString stringWithString:[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]]
 

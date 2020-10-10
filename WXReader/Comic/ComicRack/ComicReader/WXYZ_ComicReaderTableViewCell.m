@@ -42,21 +42,8 @@
 - (void)setImageModel:(WXYZ_ImageListModel *)imageModel
 {
     _imageModel = imageModel;
-    
-//    [chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-//        make.width.mas_equalTo(SCREEN_WIDTH);
-//        if (imageModel.width == 0 || imageModel.height == 0) {
-//            make.height.mas_equalTo(kGeometricHeight(SCREEN_WIDTH, imageModel.width <= 0?SCREEN_WIDTH:imageModel.width, imageModel.height <= 0?SCREEN_HEIGHT:imageModel.height));
-//        } else {
-//            if (imageModel.width <= SCREEN_WIDTH) {
-//                make.height.mas_equalTo((float)(SCREEN_WIDTH/(imageModel.width*1.0)) * imageModel.height);
-//            } else {
-//                make.height.mas_equalTo((float)(imageModel.width*1.0/SCREEN_WIDTH) * imageModel.height);
-//            }
-//        }
-//    }];
     if (imageModel.width !=0 && imageModel.height!=0) {
-    
+        
         [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
             make.width.mas_equalTo(SCREEN_WIDTH);
              if (imageModel.width <= SCREEN_WIDTH) {
@@ -73,8 +60,10 @@
     // 如果有则使用缓存加载图片
     if (cacheImage) {
         self.chapterImageView.image = cacheImage;
-        imageModel.width =cacheImage.size.width/[UIScreen mainScreen].scale;
-         imageModel.height =cacheImage.size.height/[UIScreen mainScreen].scale;
+//         imageModel.width = cacheImage.size.width/[UIScreen mainScreen].scale;
+//         imageModel.height = cacheImage.size.height/[UIScreen mainScreen].scale;
+        imageModel.width = cacheImage.size.width;
+        imageModel.height = cacheImage.size.height;
         [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
            
                if (imageModel.width == 0 || imageModel.height == 0) {
@@ -103,14 +92,16 @@
         } else { // 沙盒中没有缓存图片
             // 加载网络图片
             @weakify(self);
-            [self.chapterImageView setImageWithURL:[NSURL URLWithString:imageModel.image] placeholder:HoldImage options:YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
+            [self.chapterImageView setImageWithURL:[NSURL URLWithString:imageModel.image] placeholder:IMGHoldImage options:YYWebImageOptionSetImageWithFadeAnimation completion:^(UIImage * _Nullable image, NSURL * _Nonnull url, YYWebImageFromType from, YYWebImageStage stage, NSError * _Nullable error) {
                 @strongify(self);
                 if (error==nil && image != nil) {
                     if (imageModel.width !=0 && imageModel.height!=0) {
                         return;
                     }
-                    imageModel.width =image.size.width/[UIScreen mainScreen].scale;
-                    imageModel.height =image.size.height/[UIScreen mainScreen].scale;
+//                    imageModel.width =image.size.width/[UIScreen mainScreen].scale;
+//                    imageModel.height =image.size.height/[UIScreen mainScreen].scale;
+                    imageModel.width =image.size.width;
+                    imageModel.height =image.size.height;
                 
                     [self.chapterImageView mas_updateConstraints:^(MASConstraintMaker *make) {
                         

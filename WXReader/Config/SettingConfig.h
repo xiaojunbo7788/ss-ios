@@ -21,7 +21,7 @@
 #define Apple_ID @""
 
 // api服务器地址 fix-g
-//TODO:线上
+////TODO:线上
 // api域名
 #define APIURL @"https://app.sscomic.life"
 // api秘钥
@@ -31,9 +31,7 @@
 
 
 ////TODO:测试
-//// api域名
-//#define APIURL @"http://api.sscomic.life"
-//// api域名
+// api域名
 //#define APIURL @"http://api.songshucangku.com"
 //// api秘钥
 //#define app_key @"dc1fbf20163dc54a"

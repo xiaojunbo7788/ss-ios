@@ -235,7 +235,7 @@
 - (void)gotoCurrentClick:(UIButton *)sender
 {
     if (self.directoryListModel.chapter_list.count == 0) return;
-    if (self.readIndex) {
+    if (self.readIndex && self.readIndex >=0) {
         [self.mainTableView scrollToRow:self.readIndex inSection:0 atScrollPosition:UITableViewScrollPositionTop animated:NO];
     } else {
         [self.mainTableView setContentOffset:CGPointMake(0,0) animated:NO];

@@ -231,6 +231,29 @@
         [[WXYZ_ComicMenuView sharedManager] changeMode:self.selMode];
         [[WXYZ_ComicMenuView sharedManager] showMenuView];
         [self.barrageManager pause];
+        
+        if (scrollView == self.mainTableViewGroup) {
+            CGRect cellRect = [self.mainTableViewGroup rectForRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
+                         if (cellRect.size.width > 0 && cellRect.size.height > 0) {
+                               if (cellRect.size.width > 0 && cellRect.size.height > 0) {
+                                   if (self.mainTableViewGroup.contentOffset.y >= cellRect.origin.y-cellRect.size.height/2) {
+                                       [self showPayAlert:self.comicChapterModel];
+                                       self.mainTableViewGroup.scrollEnabled = false;
+                                   }
+                               }
+                             
+                         }
+                   
+                   if (self.comicChapterModel.image_list.count <= 10) {
+                       CGRect cellRect2 = [self.mainTableViewGroup rectForRowAtIndexPath:[NSIndexPath indexPathForRow:self.comicChapterModel.image_list.count-1 inSection:0]];
+                       if (cellRect2.size.width > 0 && cellRect2.size.height > 0) {
+                           if (self.mainTableViewGroup.contentOffset.y >= cellRect2.origin.y-cellRect2.size.height/2) {
+                               [self showPayAlert:self.comicChapterModel];
+                               self.mainTableViewGroup.scrollEnabled = false;
+                           }
+                       }
+                   }
+        }
         return;
     }
     if (scrollView == self.mainTableViewGroup) {
@@ -693,23 +716,13 @@
             [WXYZ_ComicMenuView sharedManager].comicChapterModel = t_model;
             [WXYZ_ComicMenuView sharedManager].productionModel = weakSelf.comicProductionModel;
 
-            if (t_model.is_preview) {
-                if (!weakSelf.payBar && weakSelf) {
-                    WXYZ_ProductionChapterModel *tt_model = [[WXYZ_ProductionChapterModel alloc] init];
-                    tt_model.production_id = t_model.production_id;
-                    tt_model.chapter_id = t_model.chapter_id;
-                    tt_model.recharge_content = t_model.recharge_content;
-                    WXYZ_ChapterBottomPayBar *payBar = [[WXYZ_ChapterBottomPayBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) chapterModel:tt_model barType:WXYZ_BottomPayBarTypeBuyChapter productionType:WXYZ_ProductionTypeComic];
-                    weakSelf.payBar = payBar;
-                    payBar.paySuccessChaptersBlock = ^(NSArray<NSString *> * _Nonnull success_chapter_ids) {
-                        [weakSelf netRequest];
-                    };
-                    payBar.canTouchHiddenView = NO;
-                    [weakSelf.view addSubview:payBar];
-                    [payBar showBottomPayBar];
-                }
+            //TODO:这里是否每章节都判断
+//            && t_model.last_chapter > 0
+            if (t_model.is_preview ) {
+//                [weakSelf showPayAlert:t_model];
             } else {
                 [weakSelf.payBar hiddenBottomPayBar];
+                weakSelf.payBar.isShow = false;
                 [weakSelf.payBar removeFromSuperview];
                 weakSelf.payBar = nil;
             }
@@ -736,6 +749,28 @@
     } failure:nil];
 
     [WXYZ_NetworkRequestManger POST:Comic_Add_Read_Log parameters:@{@"comic_id":[WXYZ_UtilsHelper formatStringWithInteger:self.comicProductionModel.production_id], @"chapter_id":[WXYZ_UtilsHelper formatStringWithInteger:self.chapter_id]} model:nil success:nil failure:nil];
+}
+
+- (void)showPayAlert:(WXYZ_ProductionChapterModel * _Nullable)t_model {
+    if (!self.payBar && self) {
+        if (self.payBar.isShow) {
+            return;
+        }
+        WXYZ_ProductionChapterModel *tt_model = [[WXYZ_ProductionChapterModel alloc] init];
+        tt_model.production_id = t_model.production_id;
+        tt_model.chapter_id = t_model.chapter_id;
+        tt_model.recharge_content = t_model.recharge_content;
+        WXYZ_ChapterBottomPayBar *payBar = [[WXYZ_ChapterBottomPayBar alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT) chapterModel:tt_model barType:WXYZ_BottomPayBarTypeBuyChapter productionType:WXYZ_ProductionTypeComic];
+        self.payBar = payBar;
+        self.payBar.isShow = true;
+        WS(weakSelf);
+        payBar.paySuccessChaptersBlock = ^(NSArray<NSString *> * _Nonnull success_chapter_ids) {
+            [weakSelf netRequest];
+        };
+        payBar.canTouchHiddenView = NO;
+        [self.view addSubview:payBar];
+        [payBar showBottomPayBar];
+    }
 }
 
 // 请求弹幕数据

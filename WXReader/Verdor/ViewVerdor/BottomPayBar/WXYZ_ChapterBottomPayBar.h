@@ -43,6 +43,8 @@ typedef void(^BottomPayBarHiddenBlock)(void);
 
 @property (nonatomic, assign) BOOL canTouchHiddenView;
 
+@property (nonatomic, assign) BOOL isShow;
+
 - (instancetype)initWithChapterModel:(WXYZ_ProductionChapterModel *)chapterModel barType:(WXYZ_BottomPayBarType)barType productionType:(WXYZ_ProductionType)productionType;
 
 - (instancetype)initWithChapterModel:(WXYZ_ProductionChapterModel *)chapterModel barType:(WXYZ_BottomPayBarType)barType productionType:(WXYZ_ProductionType)productionType buyChapterNum:(NSInteger)buyChapterNum;

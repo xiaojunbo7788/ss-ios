@@ -17,12 +17,13 @@
 
 #import "WXYZ_ComicMallDetailModel.h"
 #import "WXYZ_ComicDirectoryListModel.h"
-
+#import "WXZY_CommonPayAlertView.h"
 #import "WXYZ_ProductionReadRecordManager.h"
 #import "WXYZ_ShareManager.h"
 #import "WXYZ_DownloadHelper.h"
-
-@interface WXYZ_ComicMallDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+#import "WXYZ_ComicOptionsView.h"
+#import "WXYZ_MemberViewController.h"
+@interface WXYZ_ComicMallDetailViewController () <UITableViewDelegate, UITableViewDataSource,WXYZ_ComicOptionsViewDelegate>
 {
     UIButton *menuButton;
     UILabel *menuTitle;
@@ -46,6 +47,8 @@
 @property (nonatomic, strong) WXYZ_ComicMallDetailModel *comicDetailModel;
 
 @property (nonatomic, strong) WXYZ_CompositeEmbeddedTableView *mallTableView;
+
+@property (nonatomic, strong) WXYZ_ComicOptionsView *optionsView;
 
 @end
 
@@ -194,18 +197,133 @@
         make.width.mas_equalTo(120);
     }];
     
-    menuTitle = [[UILabel alloc] init];
-    menuTitle.textColor = kBlackColor;
-    menuTitle.textAlignment = NSTextAlignmentLeft;
-    menuTitle.font = kFont13;
-    [self.bottomMenuBar addSubview:menuTitle];
+//    menuTitle = [[UILabel alloc] init];
+//    menuTitle.textColor = kBlackColor;
+//    menuTitle.textAlignment = NSTextAlignmentLeft;
+//    menuTitle.font = kFont13;
+//    [self.bottomMenuBar addSubview:menuTitle];
+//
+//    [menuTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(kMargin);
+//        make.top.mas_equalTo(0);
+//        make.right.mas_equalTo(menuButton.mas_left);
+//        make.height.mas_equalTo(PUB_TABBAR_HEIGHT - PUB_TABBAR_OFFSET);
+//    }];
     
-    [menuTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(kMargin);
+    WXYZ_ComicOptionsView *optionsView = [[WXYZ_ComicOptionsView alloc] init];
+    optionsView.delegate = self;
+    [self.bottomMenuBar addSubview:optionsView];
+    self.optionsView = optionsView;
+    [optionsView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.bottomMenuBar.mas_left);
         make.top.mas_equalTo(0);
         make.right.mas_equalTo(menuButton.mas_left);
         make.height.mas_equalTo(PUB_TABBAR_HEIGHT - PUB_TABBAR_OFFSET);
     }];
+    
+    [optionsView refreshStateView];
+    
+}
+
+- (void)changeClearData {
+    WS(weakSelf);
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+           if (is_iPad) {
+               UIPopoverPresentationController *popover = actionSheet.popoverPresentationController;
+               
+               if (popover) {
+                   popover.sourceView = self.view;
+                   popover.sourceRect = self.view.bounds;
+                   popover.permittedArrowDirections = UIPopoverArrowDirectionDown;
+               }
+           }
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"标清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               if (!WXYZ_UserInfoManager.isLogin) {
+                   [WXYZ_LoginViewController presentLoginView];
+                   return;
+               }
+               [[WXYZ_UserInfoManager shareInstance] setClearData:0];
+               [weakSelf.optionsView refreshStateView];
+           }]];
+
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"超清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               if (!WXYZ_UserInfoManager.isLogin) {
+                   [WXYZ_LoginViewController presentLoginView];
+                   return;
+               }
+               if ([WXYZ_UserInfoManager shareInstance].isVip) {
+                   [[WXYZ_UserInfoManager shareInstance] setClearData:1];
+               } else {
+                   [weakSelf showPayAlerView];
+               }
+               [weakSelf.optionsView refreshStateView];
+           }]];
+
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+
+           [[WXYZ_ViewHelper getWindowRootController] presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (void)changeLineData {
+    WS(weakSelf);
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+           if (is_iPad) {
+               UIPopoverPresentationController *popover = actionSheet.popoverPresentationController;
+               
+               if (popover) {
+                   popover.sourceView = self.view;
+                   popover.sourceRect = self.view.bounds;
+                   popover.permittedArrowDirections = UIPopoverArrowDirectionDown;
+               }
+           }
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"普通线路" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               if (!WXYZ_UserInfoManager.isLogin) {
+                   [WXYZ_LoginViewController presentLoginView];
+                   return;
+               }
+               [[WXYZ_UserInfoManager shareInstance] setLineData:0];
+               [weakSelf.optionsView refreshStateView];
+           }]];
+
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"VIP线路" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+               if (!WXYZ_UserInfoManager.isLogin) {
+                   [WXYZ_LoginViewController presentLoginView];
+                   return;
+               }
+               if ([WXYZ_UserInfoManager shareInstance].isVip) {
+                   [[WXYZ_UserInfoManager shareInstance] setLineData:1];
+               } else {
+                   [weakSelf showPayAlerView];
+               }
+               [weakSelf.optionsView refreshStateView];
+           }]];
+
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+
+           [[WXYZ_ViewHelper getWindowRootController] presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (void)showPayAlerView {
+    //TODO:弹窗
+    WXZY_CommonPayAlertView *payAlertView = [[WXZY_CommonPayAlertView alloc]initWithFrame:CGRectZero];
+    payAlertView.isShowRecharge  = false;
+    payAlertView.msg = @"升级VIP后即可享受高清漫画，还有提供国内高速线路！";
+    [payAlertView showInView:[UIApplication sharedApplication].keyWindow];
+    WS(weakSelf)
+    payAlertView.onClick = ^(int type) {
+        if (type == 1) {
+            //分享
+            [[WXYZ_ShareManager sharedManager] shareApplicationInController:weakSelf shareState:WXYZ_ShareStateAll];
+        } else if (type == 2) {
+            //vip
+            WXYZ_MemberViewController *vc = [[WXYZ_MemberViewController alloc] init];
+            vc.productionType = weakSelf.productionType;
+            WXYZ_NavigationController *t_nav = [[WXYZ_NavigationController alloc] initWithRootViewController:vc];
+            [[WXYZ_ViewHelper getWindowRootController] presentViewController:t_nav animated:YES completion:nil];
+            [kMainWindow sendSubviewToBack:weakSelf.view];
+        }
+    };
+                   
 }
 
 - (void)scrollMove:(NSNotification *)noti
@@ -360,14 +478,14 @@
 - (void)reloadToolBarState
 {
      if ([[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] productionHasReadedWithProduction_id:self.comicDetailModel.productionModel.production_id]) {
-         menuTitle.text = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapterTitleWithProduction_id:self.comicDetailModel.productionModel.production_id]?:@"";
+//         menuTitle.text = [[WXYZ_ProductionReadRecordManager shareManagerWithProductionType:WXYZ_ProductionTypeComic] getReadingRecordChapterTitleWithProduction_id:self.comicDetailModel.productionModel.production_id]?:@"";
          [menuButton setTitle:@"继续阅读" forState:UIControlStateNormal];
      } else {
          if (self.comicDetailModel.productionModel.chapter_list.count > 0) {
              WXYZ_ProductionChapterModel *t_chapterList = [self.comicDetailModel.productionModel.chapter_list objectOrNilAtIndex:0];
-             menuTitle.text = t_chapterList.chapter_title?:@"";
+//             menuTitle.text = t_chapterList.chapter_title?:@"";
          } else {
-             menuTitle.text = self.comicDetailModel.productionModel.name?:@"";
+//             menuTitle.text = self.comicDetailModel.productionModel.name?:@"";
          }
          [menuButton setTitle:@"开始阅读" forState:UIControlStateNormal];
      }

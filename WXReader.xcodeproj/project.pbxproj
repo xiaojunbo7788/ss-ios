@@ -962,6 +962,8 @@
 		B1064B97250E036B006F3550 /* WXYZ_TagTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B96250E036B006F3550 /* WXYZ_TagTableViewCell.m */; };
 		B1064B9A250E0894006F3550 /* WXYZ_TagBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B98250E0894006F3550 /* WXYZ_TagBookViewController.m */; };
 		B1064B9D250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B1064B9C250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m */; };
+		B12BCC9B2531773A007D990A /* WXZY_NoticeAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12BCC9A25317739007D990A /* WXZY_NoticeAlertView.m */; };
+		B12BCC9F253185A6007D990A /* WXYZ_ComicOptionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B12BCC9E253185A6007D990A /* WXYZ_ComicOptionsView.m */; };
 		B13F48062527059A00A980D3 /* WXYZ_NewInviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F48052527059A00A980D3 /* WXYZ_NewInviteViewController.m */; };
 		B13F480A252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F4809252708C000A980D3 /* WXYZ_InviteTopTableViewCell.m */; };
 		B13F480D252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B13F480C252708D000A980D3 /* WXYZ_InviteBottomTableViewCell.m */; };
@@ -2456,6 +2458,10 @@
 		B1064B99250E0894006F3550 /* WXYZ_TagBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXYZ_TagBookViewController.h; sourceTree = "<group>"; };
 		B1064B9B250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_SearchCollectionViewCell.h; sourceTree = "<group>"; };
 		B1064B9C250E0DDE006F3550 /* WXYZ_SearchCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_SearchCollectionViewCell.m; sourceTree = "<group>"; };
+		B12BCC9925317739007D990A /* WXZY_NoticeAlertView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXZY_NoticeAlertView.h; sourceTree = "<group>"; };
+		B12BCC9A25317739007D990A /* WXZY_NoticeAlertView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXZY_NoticeAlertView.m; sourceTree = "<group>"; };
+		B12BCC9D253185A6007D990A /* WXYZ_ComicOptionsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_ComicOptionsView.h; sourceTree = "<group>"; };
+		B12BCC9E253185A6007D990A /* WXYZ_ComicOptionsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_ComicOptionsView.m; sourceTree = "<group>"; };
 		B13F48042527059A00A980D3 /* WXYZ_NewInviteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_NewInviteViewController.h; sourceTree = "<group>"; };
 		B13F48052527059A00A980D3 /* WXYZ_NewInviteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WXYZ_NewInviteViewController.m; sourceTree = "<group>"; };
 		B13F4808252708C000A980D3 /* WXYZ_InviteTopTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WXYZ_InviteTopTableViewCell.h; sourceTree = "<group>"; };
@@ -3978,6 +3984,7 @@
 		4985BDA9229D673F005D7762 /* ComicMallDetail */ = {
 			isa = PBXGroup;
 			children = (
+				B12BCC9C25318585007D990A /* ComicOptionsView */,
 				4985BDB9229E69C8005D7762 /* ComicDetailList */,
 				4985BDBA229E69F4005D7762 /* ComicDetailDirectory */,
 				4985BDAA229D6771005D7762 /* WXYZ_ComicMallDetailViewController.h */,
@@ -5574,6 +5581,24 @@
 			path = TagList;
 			sourceTree = "<group>";
 		};
+		B12BCC9825317724007D990A /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				B12BCC9925317739007D990A /* WXZY_NoticeAlertView.h */,
+				B12BCC9A25317739007D990A /* WXZY_NoticeAlertView.m */,
+			);
+			path = Notice;
+			sourceTree = "<group>";
+		};
+		B12BCC9C25318585007D990A /* ComicOptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				B12BCC9D253185A6007D990A /* WXYZ_ComicOptionsView.h */,
+				B12BCC9E253185A6007D990A /* WXYZ_ComicOptionsView.m */,
+			);
+			path = ComicOptionsView;
+			sourceTree = "<group>";
+		};
 		B13F48032527057300A980D3 /* NewInvite */ = {
 			isa = PBXGroup;
 			children = (
@@ -5674,6 +5699,7 @@
 		B1D0B9EA24FBD11A0099DEE1 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				B12BCC9825317724007D990A /* Notice */,
 				B19523492527A4F0007856B1 /* Pay */,
 				B13F481225270BC900A980D3 /* Label */,
 				B185806E25039ADD00C60C45 /* HCSStarRatingView */,
@@ -6757,6 +6783,7 @@
 				6A656B1F24C5CAEC00F71263 /* WXYZ_MagicBookMallViewController.m in Sources */,
 				491C10D624B056D000B00E32 /* WXYZ_BookMallHorizontalModuleCollectionViewCell.m in Sources */,
 				49699171244AA928005349A7 /* WXYZ_BasicPlayPageHeaderView.m in Sources */,
+				B12BCC9F253185A6007D990A /* WXYZ_ComicOptionsView.m in Sources */,
 				6A70EC532449D8A500E0BB6A /* XHLaunchAdView.m in Sources */,
 				49BAC6DA2296BF9B00C32801 /* WXYZ_ComicMallCenterViewController.m in Sources */,
 				4903076020AECEA600A7A12B /* YJBannerViewCell.m in Sources */,
@@ -6819,6 +6846,7 @@
 				494A608C24221B2500FBE116 /* WXYZ_AudioSettingHelper.m in Sources */,
 				494A60BB2425148100FBE116 /* WXYZ_ProductionCollectionManager.m in Sources */,
 				6A4B63A424855E540032A557 /* WXYZ_GiftLogModel.m in Sources */,
+				B12BCC9B2531773A007D990A /* WXZY_NoticeAlertView.m in Sources */,
 				49A1672720B1C8A800BC7A0C /* WXYZ_BookMallStyleSingleTableViewCell.m in Sources */,
 				49C7109220DA3D270059AE20 /* WXYZ_MineTableViewCell.m in Sources */,
 				491C10D524B056D000B00E32 /* WXYZ_BookMallBasicModuleCollectionViewCell.m in Sources */,
@@ -6978,7 +7006,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4SD67ZUAT4;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -6999,7 +7027,7 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -7071,7 +7099,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = 4SD67ZUAT4;
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7088,7 +7116,7 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.0;
+				MARKETING_VERSION = 1.2.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

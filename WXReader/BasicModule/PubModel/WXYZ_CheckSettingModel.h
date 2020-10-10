@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WXYZ_CheckSettingModel : NSObject
 
+@property (nonatomic, copy) NSString *system_notice;
+
 @property (nonatomic, strong) AdStatusSetting *ad_status_setting;
 
 @property (nonatomic, strong) SystemSetting *system_setting;
@@ -80,6 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *msg;              // 更新文案
 
 @property (nonatomic, copy) NSString *url;              // 更新跳转链接
+@property (nonatomic, copy) NSString *url2;              // 更新跳转链接
 
 @end
 

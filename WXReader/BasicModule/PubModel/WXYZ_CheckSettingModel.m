@@ -54,6 +54,11 @@
 @end
 
 @implementation VersionUpdate
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{
+         @"url2" : @"new_url"
+    };
+}
 
 @end
 
