@@ -27,6 +27,7 @@
         [self addSubview:self.contentView];
         
         self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.leftButton.backgroundColor= [UIColor whiteColor];
         [self.leftButton setTitle:@"普通线路" forState:UIControlStateNormal];
         self.leftButton.layer.masksToBounds = true;
         self.leftButton.layer.cornerRadius = 24/2;
@@ -37,6 +38,7 @@
         [self addSubview:self.leftButton];
         
         self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.rightButton.backgroundColor= [UIColor whiteColor];
         [self.rightButton setTitle:@"标清" forState:UIControlStateNormal];
         self.rightButton.layer.masksToBounds = true;
         self.rightButton.layer.cornerRadius = 24/2;
