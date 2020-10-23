@@ -65,9 +65,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     WXYZ_ProductionModel *t_model = [self.dataSourceArray objectOrNilAtIndex:indexPath.row];
-    WXYZ_ComicMallDetailViewController *vc = [[WXYZ_ComicMallDetailViewController alloc] init];
-    vc.comic_id = t_model.production_id;
-    [self.navigationController pushViewController:vc animated:YES];
+    if (t_model != nil) {
+        WXYZ_ComicMallDetailViewController *vc = [[WXYZ_ComicMallDetailViewController alloc] init];
+        vc.comic_id = t_model.production_id;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 
