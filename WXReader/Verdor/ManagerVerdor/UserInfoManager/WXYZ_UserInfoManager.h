@@ -45,7 +45,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 登录状态
 @property (nonatomic, assign, class, readonly, getter=isLogin) BOOL login;
 
-//清晰度 0 标清 1超清
+//清晰度 0 标清 1高清 2超清
 @property (nonatomic, assign) NSInteger clearData;
 //线路  0 普通线路 1 VIP线路
 @property (nonatomic, assign) NSInteger lineData;

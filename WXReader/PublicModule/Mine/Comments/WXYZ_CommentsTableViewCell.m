@@ -61,7 +61,7 @@
     
     vipImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"public_vip_select"]];
     vipImageView.hidden = YES;
-    [self addSubview:vipImageView];
+    [self.contentView addSubview:vipImageView];
     
     [vipImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(nickNameLabel.mas_right);

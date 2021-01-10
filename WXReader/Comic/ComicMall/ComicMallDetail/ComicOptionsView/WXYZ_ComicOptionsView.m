@@ -88,8 +88,10 @@
              [self.leftButton setTitle:@"普通线路" forState:UIControlStateNormal];
         }
         
-        if ([WXYZ_UserInfoManager shareInstance].clearData == 1) {
+        if ([WXYZ_UserInfoManager shareInstance].clearData == 2) {
             [self.rightButton setTitle:@"超清" forState:UIControlStateNormal];
+        } else if ([WXYZ_UserInfoManager shareInstance].clearData == 1) {
+            [self.rightButton setTitle:@"高清" forState:UIControlStateNormal];
         } else {
             [self.rightButton setTitle:@"标清" forState:UIControlStateNormal];
         }

@@ -58,7 +58,7 @@
 /**
  友盟
  */
-#define UM_App_Key @"5f2950cfd30932215474e6bb"
+#define UM_App_Key @"5f5daf51b4739632429e2774"
 
 /**
  阿里推送

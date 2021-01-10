@@ -245,6 +245,19 @@
                [[WXYZ_UserInfoManager shareInstance] setClearData:0];
                [weakSelf.optionsView refreshStateView];
            }]];
+    
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"高清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                if (!WXYZ_UserInfoManager.isLogin) {
+                    [WXYZ_LoginViewController presentLoginView];
+                    return;
+                }
+                if ([WXYZ_UserInfoManager shareInstance].isVip) {
+                    [[WXYZ_UserInfoManager shareInstance] setClearData:1];
+                } else {
+                    [weakSelf showPayAlerView];
+                }
+                [weakSelf.optionsView refreshStateView];
+            }]];
 
            [actionSheet addAction:[UIAlertAction actionWithTitle:@"超清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                if (!WXYZ_UserInfoManager.isLogin) {
@@ -252,7 +265,7 @@
                    return;
                }
                if ([WXYZ_UserInfoManager shareInstance].isVip) {
-                   [[WXYZ_UserInfoManager shareInstance] setClearData:1];
+                   [[WXYZ_UserInfoManager shareInstance] setClearData:2];
                } else {
                    [weakSelf showPayAlerView];
                }

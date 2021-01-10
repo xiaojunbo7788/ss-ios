@@ -31,30 +31,30 @@
         
         self.bgView = [[UIView alloc] init];
         self.bgView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.bgView];
+        [self.contentView addSubview:self.bgView];
         
         
         self.leftImageView = [[UIImageView alloc] init];
         self.leftImageView.layer.masksToBounds = true;
         self.leftImageView.layer.cornerRadius = 21;
         self.leftImageView.contentMode = UIViewContentModeScaleAspectFill;
-        [self addSubview:self.leftImageView];
+        [self.contentView addSubview:self.leftImageView];
         
         self.nameView = [UILabel creatByColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:15]];
-        [self addSubview:self.nameView];
+        [self.contentView addSubview:self.nameView];
         
         self.timeView = [UILabel creatByColor:WX_COLOR_WITH_HEX(0x656565) withFont:[UIFont systemFontOfSize:14]];
-        [self addSubview:self.timeView];
+        [self.contentView addSubview:self.timeView];
         
         self.rightView = [UILabel creatByColor:WX_COLOR_WITH_HEX(0xE53323) withFont:[UIFont systemFontOfSize:14]];
         self.rightView.text = @"邀请成功";
-        [self addSubview:self.rightView];
+        [self.contentView addSubview:self.rightView];
         
         self.errView = [UILabel creatByColor:WX_COLOR_WITH_HEX(0x656565) withFont:[UIFont systemFontOfSize:15]];
         self.errView.text = @"暂无邀请记录";
         self.errView.hidden = true;
         self.errView.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:self.errView];
+        [self.contentView addSubview:self.errView];
         
         [self makeConstrants];
         

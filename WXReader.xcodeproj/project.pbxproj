@@ -7003,11 +7003,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = WXReader/WXReader.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lingyan li (DS7P63D68D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lingyan li (DS7P63D68D)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 4SD67ZUAT4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7027,7 +7027,11 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
+				OTHER_CFLAGS = (
+					"-Xclang",
+					"-fcompatibility-qualified-id-block-type-checking",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -7080,10 +7084,10 @@
 					"-framework",
 					"\"WebP\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssreader.novel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ss-comic.app";
 				PRODUCT_NAME = "松鼠仓库";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = novel;
+				PROVISIONING_PROFILE_SPECIFIER = sscomic;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -7096,11 +7100,11 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = NO;
 				CODE_SIGN_ENTITLEMENTS = WXReader/WXReader.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: jiazheng guo (6K86G5Y9DV)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: lingyan li (DS7P63D68D)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: lingyan li (DS7P63D68D)";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 11;
-				DEVELOPMENT_TEAM = 4SD67ZUAT4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7116,7 +7120,11 @@
 				LD_GENERATE_MAP_FILE = NO;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MARKETING_VERSION = 1.2.2;
+				MARKETING_VERSION = 1.2.3;
+				OTHER_CFLAGS = (
+					"-Xclang",
+					"-fcompatibility-qualified-id-block-type-checking",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -7169,10 +7177,10 @@
 					"-framework",
 					"\"WebP\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ssreader.novel;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ss-comic.app";
 				PRODUCT_NAME = "松鼠仓库";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = novel;
+				PROVISIONING_PROFILE_SPECIFIER = sscomic;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

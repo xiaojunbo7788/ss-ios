@@ -8,7 +8,7 @@
 
 #import "AppDelegate+UMAnalysis.h"
 #import <UMCommon/UMCommon.h>
-#import <UMCommon/MobClick.h>
+
 #if __has_include(<UMShare/UMShare.h>)
 #import <UMShare/UMShare.h>
 #endif

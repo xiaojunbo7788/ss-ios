@@ -22,14 +22,14 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         self.payImage = [[UIImageView alloc] initWithImage:HoldImage];
-        [self addSubview:self.payImage];
+        [self.contentView addSubview:self.payImage];
         
         self.payName = [UILabel creatByColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:15]];
-        [self addSubview:self.payName];
+        [self.contentView addSubview:self.payName];
         
         self.rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.rightBtn setImage:[UIImage imageNamed:@"pay_channel_failure"] forState:UIControlStateNormal];
-        [self addSubview:self.rightBtn];
+        [self.contentView addSubview:self.rightBtn];
         
         [self.payImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(15);

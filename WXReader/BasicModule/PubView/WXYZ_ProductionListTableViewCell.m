@@ -64,7 +64,7 @@
     self.bookTitleLabel.backgroundColor = kWhiteColor;
     self.bookTitleLabel.font = kMainFont;
     self.bookTitleLabel.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:self.bookTitleLabel];
+    [self.contentView addSubview:self.bookTitleLabel];
     
     [self.bookTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bookImageView.mas_right).with.offset(kHalfMargin);
@@ -80,7 +80,7 @@
     self.authorLabel.font = kFont11;
     self.authorLabel.textColor = kColorRGBA(176, 176, 177, 1);
     self.authorLabel.textAlignment = NSTextAlignmentLeft;
-    [self addSubview:self.authorLabel];
+    [self.contentView addSubview:self.authorLabel];
     
     [self.authorLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bookTitleLabel.mas_left);
@@ -94,7 +94,7 @@
     self.tagView.tagAlignment = WXYZ_TagAlignmentRight;
     self.tagView.tagBorderStyle = WXYZ_TagBorderStyleNone;
     self.tagView.tagMergeAllowance = 0;
-    [self addSubview:self.tagView];
+    [self.contentView addSubview:self.tagView];
     
     [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.authorLabel.mas_centerY);
@@ -112,7 +112,7 @@
     self.bookIntroductionLabel.textColor = kColorRGBA(102, 102, 102, 1);
     self.bookIntroductionLabel.textAlignment = NSTextAlignmentLeft;
     self.bookIntroductionLabel.layer.masksToBounds = YES;
-    [self addSubview:self.bookIntroductionLabel];
+    [self.contentView addSubview:self.bookIntroductionLabel];
     
     [self.bookIntroductionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.bookTitleLabel.mas_left);

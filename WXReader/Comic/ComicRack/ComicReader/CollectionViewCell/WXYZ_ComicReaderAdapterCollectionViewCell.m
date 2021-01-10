@@ -42,7 +42,7 @@
         UIGestureRecognizer *gesture = _collectionView.pinchGestureRecognizer;
         [_collectionView removeGestureRecognizer:gesture];
 
-        [self addSubview:_collectionView];
+        [self.contentView addSubview:_collectionView];
         [_collectionView registerClass:[WXYZ_ComicReaderCollectionCell class] forCellWithReuseIdentifier:@"WXYZ_ComicReaderCollectionCell"];
 
         @weakify(self);

@@ -63,6 +63,25 @@
             NSString *newImg = @"";
             for (int i = 0; i < imgs.count; i++) {
                 if (i == imgs.count -1) {
+                    newImg = [NSString stringWithFormat:@"%@%@",newImg,@"500/"];
+                    newImg = [NSString stringWithFormat:@"%@%@",newImg,imgs[i]];
+                } else {
+                    newImg = [NSString stringWithFormat:@"%@%@/",newImg,imgs[i]];
+                }
+            }
+            _isUpdateImage = true;
+            _image = newImg;
+            return _image;
+        } else {
+            _isUpdateImage = true;
+            return @"";
+        }
+    } else if ([WXYZ_UserInfoManager shareInstance].clearData == 1) {
+        if (_image != nil && _image.length > 0) {
+            NSArray *imgs = [_image componentsSeparatedByString:@"/"];
+            NSString *newImg = @"";
+            for (int i = 0; i < imgs.count; i++) {
+                if (i == imgs.count -1) {
                     newImg = [NSString stringWithFormat:@"%@%@",newImg,@"900/"];
                     newImg = [NSString stringWithFormat:@"%@%@",newImg,imgs[i]];
                 } else {

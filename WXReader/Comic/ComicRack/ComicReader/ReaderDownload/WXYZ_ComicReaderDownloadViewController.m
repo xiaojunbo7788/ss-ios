@@ -215,7 +215,7 @@
                [weakSelf.optionsView refreshStateView];
            }]];
 
-           [actionSheet addAction:[UIAlertAction actionWithTitle:@"超清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+           [actionSheet addAction:[UIAlertAction actionWithTitle:@"高清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
                if (!WXYZ_UserInfoManager.isLogin) {
                    [WXYZ_LoginViewController presentLoginView];
                    return;
@@ -227,6 +227,19 @@
                }
                [weakSelf.optionsView refreshStateView];
            }]];
+    
+            [actionSheet addAction:[UIAlertAction actionWithTitle:@"超清" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                if (!WXYZ_UserInfoManager.isLogin) {
+                    [WXYZ_LoginViewController presentLoginView];
+                    return;
+                }
+                if ([WXYZ_UserInfoManager shareInstance].isVip) {
+                    [[WXYZ_UserInfoManager shareInstance] setClearData:2];
+                } else {
+                    [weakSelf showPayAlerView];
+                }
+                [weakSelf.optionsView refreshStateView];
+            }]];
 
            [actionSheet addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
 

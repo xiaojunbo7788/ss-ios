@@ -33,17 +33,17 @@
         self.topBgView.layer.masksToBounds = true;
         self.topBgView.backgroundColor = [UIColor whiteColor];
         self.topBgView.layer.cornerRadius = 4;
-        [self addSubview:self.topBgView];
+        [self.contentView addSubview:self.topBgView];
         
         self.shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.shareButton.layer.masksToBounds = true;
         self.shareButton.layer.cornerRadius = 4;
         [self.shareButton setImage:[UIImage imageNamed:@"invite_btn"] forState:UIControlStateNormal];
         [self.shareButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.shareButton];
+        [self.contentView addSubview:self.shareButton];
         
         self.inviteView = [[WXYZ_InviteView alloc] initWithFrame:CGRectZero];
-        [self addSubview:self.inviteView];
+        [self.contentView addSubview:self.inviteView];
         
         
         [self makeConstrants];

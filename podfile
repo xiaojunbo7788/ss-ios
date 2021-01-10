@@ -1,11 +1,13 @@
 platform :ios, '10.0'
 target 'WXReader' do
 pod 'AFNetworking',:inhibit_warnings => true
-pod 'YYKit',:inhibit_warnings => true
+#pod 'YYKit',:inhibit_warnings => true
+pod 'YYKit'
 pod 'Masonry',:inhibit_warnings => true
 pod 'pop',:inhibit_warnings => true
-
-pod 'UMCCommon',:inhibit_warnings => true
+pod 'UMCCommon', '~> 2.1.1'
+pod 'UMCAnalytics', '~> 6.0.5'
+#pod 'UMCCommon',:inhibit_warnings => true
 #pod 'UMCAnalytics',:inhibit_warnings => true
 pod 'UMCSecurityPlugins',:inhibit_warnings => true
 pod 'Bugly',:inhibit_warnings => true

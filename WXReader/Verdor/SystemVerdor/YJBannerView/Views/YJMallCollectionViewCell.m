@@ -56,6 +56,7 @@
         make.height.mas_equalTo(kGeometricHeight((SCREEN_WIDTH - 2 * (kHalfMargin + kQuarterMargin)), 5, 3));
     }];
     
+    
 }
 
 - (void)setBannerModel:(WXYZ_BannerModel *)bannerModel
@@ -80,6 +81,7 @@
     }
     
     [bannerImageView setImageWithURL:[NSURL URLWithString:bannerModel.image?:@""] placeholder:HoldImage options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    
 }
 
 @end
