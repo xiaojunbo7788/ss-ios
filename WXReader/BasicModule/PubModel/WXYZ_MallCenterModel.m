@@ -15,7 +15,8 @@
 + (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass{
     return @{@"banner" : [WXYZ_BannerModel class],
              @"label" : [WXYZ_MallCenterLabelModel class],
-             @"menus_tabs": [WXYZ_MallCenterMenusModel class]
+             @"menus_tabs": [WXYZ_MallCenterMenusModel class],
+             @"announcement": [WXYZ_NoticeModel class]
     };
 }
 
@@ -23,5 +24,10 @@
 
 
 @implementation WXYZ_MallCenterMenusModel
+
+@end
+
+@implementation WXYZ_NoticeModel
+
 
 @end

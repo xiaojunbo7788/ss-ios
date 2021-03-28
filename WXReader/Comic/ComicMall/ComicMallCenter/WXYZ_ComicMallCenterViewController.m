@@ -52,6 +52,17 @@
     [self netRequest];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.headerView.upwardMultiMarqueeView start];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.headerView.upwardMultiMarqueeView pause];
+    
+}
+
 - (void)initialize
 {
     self.needRefresh = YES;

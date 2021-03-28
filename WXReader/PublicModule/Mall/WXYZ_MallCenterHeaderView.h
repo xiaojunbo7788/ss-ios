@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "UUMarqueeView.h"
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WXYZ_MenuButtonType) {
@@ -25,6 +25,8 @@ typedef void(^BannerrImageClickBlock)(WXYZ_BannerModel *bannerModel);
 @property (nonatomic, assign) WXYZ_ProductionType productionType;
 
 @property (nonatomic, strong) WXYZ_MallCenterModel *mallCenterModel;
+
+@property (nonatomic, strong) UUMarqueeView *upwardMultiMarqueeView;
 
 @property (nonatomic, copy) void (^menuButtonClickBlock)(WXYZ_MenuButtonType menuButtonType, NSString *menuButtonTitle);
 

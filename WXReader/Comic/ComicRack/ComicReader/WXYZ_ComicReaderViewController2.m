@@ -233,6 +233,7 @@
         [self.barrageManager pause];
         
         if (scrollView == self.mainTableViewGroup) {
+            //判断滑到第10页
             CGRect cellRect = [self.mainTableViewGroup rectForRowAtIndexPath:[NSIndexPath indexPathForRow:9 inSection:0]];
                          if (cellRect.size.width > 0 && cellRect.size.height > 0) {
                                if (cellRect.size.width > 0 && cellRect.size.height > 0) {
@@ -751,6 +752,7 @@
     [WXYZ_NetworkRequestManger POST:Comic_Add_Read_Log parameters:@{@"comic_id":[WXYZ_UtilsHelper formatStringWithInteger:self.comicProductionModel.production_id], @"chapter_id":[WXYZ_UtilsHelper formatStringWithInteger:self.chapter_id]} model:nil success:nil failure:nil];
 }
 
+//TODO:
 - (void)showPayAlert:(WXYZ_ProductionChapterModel * _Nullable)t_model {
     if (!self.payBar && self) {
         if (self.payBar.isShow) {

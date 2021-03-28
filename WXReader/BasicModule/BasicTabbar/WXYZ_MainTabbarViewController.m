@@ -5,7 +5,7 @@
 //  Created by Andrew on 2018/1/4.
 //  Copyright © 2018年 Andrew. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "WXYZ_MainTabbarViewController.h"
 
 #import "WXYZ_RackCenterViewController.h"
@@ -134,6 +134,7 @@
         WXYZ_RackCenterViewController *bookRackViewController = [[WXYZ_RackCenterViewController alloc] init];
         WXYZ_MallCenterViewController *bookMallViewController = [[WXYZ_MallCenterViewController alloc] init];
         WXYZ_FansViewController *fansViewController = [[WXYZ_FansViewController alloc] init];
+        fansViewController.tabBarItem.tag = 2;
         WXYZ_DiscoverViewController *discoverViewController = [[WXYZ_DiscoverViewController alloc] init];
         WXYZ_MineViewController *mineViewController = [[WXYZ_MineViewController alloc] init];
         
@@ -168,6 +169,27 @@
         [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithUnsignedInteger:selectedIndex] forKey:WX_TABBAR_SELECT_MEMORY];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+    if ([viewController isKindOfClass:[WXYZ_NavigationController class]]) {
+        WXYZ_NavigationController *nv = (WXYZ_NavigationController *)viewController;
+        if ([nv.topViewController isKindOfClass:[WXYZ_FansViewController class]]) {
+            AppDelegate *app = (AppDelegate *)kRCodeSync([UIApplication sharedApplication].delegate);
+            if (app.checkSettingModel.web_view_urlist != nil && app.checkSettingModel.web_view_urlist.count > 0) {
+                NSDictionary *dic = app.checkSettingModel.web_view_urlist.firstObject;
+//                0是浏览器
+//                1.webview
+                if ([dic[@"webview"] intValue] == 0) {
+                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:dic[@"play_url"]] options:@{} completionHandler:nil];
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        }
+    }
+    return  true;
 }
 
 #pragma mark - Notification

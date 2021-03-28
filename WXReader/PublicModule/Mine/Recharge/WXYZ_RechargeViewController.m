@@ -352,7 +352,12 @@
         WXYZ_GoodsModel *t_goodsModel = [self.rechargeModel.list objectOrNilAtIndex:goodsSelectIndex];
         WXYZ_PayModel *t_payModel = [t_goodsModel.pal_channel objectOrNilAtIndex:payStyleIndex];
         NSDictionary *dic = @{@"channel_id":@(t_payModel.channel_id),@"goods_id":@(t_goodsModel.goods_id),@"type":t_payModel.channel_code};
-        [self gotoPay:dic];
+        if (t_payModel.pay_type == 4) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:t_payModel.link_url] options:@{} completionHandler:nil];
+        } else {
+            [self gotoPay:dic];
+        }
+       
 //        params.putExtraParams("channel_id", palChannelBean.getChannel_id()+"");
 //                           params.putExtraParams("goods_id", mGoosId);
 //                           params.putExtraParams("type", palChannelBean.getChannel_code());

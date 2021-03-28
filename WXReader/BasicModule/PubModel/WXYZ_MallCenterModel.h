@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WXYZ_BannerModel, WXYZ_MallCenterLabelModel, WXYZ_MallCenterMenusModel;
+@class WXYZ_BannerModel, WXYZ_MallCenterLabelModel, WXYZ_MallCenterMenusModel,WXYZ_NoticeModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSArray <WXYZ_MallCenterLabelModel *>*label;
 
 @property (nonatomic, strong) NSArray <WXYZ_MallCenterMenusModel *> *menus_tabs;
+
+@property (nonatomic, strong) NSArray <WXYZ_NoticeModel *> *announcement;
+
 
 @property (nonatomic, strong) NSArray <NSString *>*hot_word;
 
@@ -34,5 +37,22 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *action;
 
 @end
+
+@interface WXYZ_NoticeModel : NSObject
+
+@property (nonatomic, copy) NSString *status;
+@property (nonatomic, copy) NSString *open_type;
+@property (nonatomic, copy) NSString *content;
+
+@property (nonatomic, copy) NSString *product;
+
+@property (nonatomic, copy) NSString *_id;
+@property (nonatomic, copy) NSString *created_at;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, copy) NSString *deleted_at;
+@property (nonatomic, copy) NSString *link_url;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

@@ -42,6 +42,8 @@
 @property (nonatomic, copy) NSString *flag;
 
 @property (nonatomic, copy) NSString *apple_id;
+@property (nonatomic, copy) NSString *pay_type;
+
 
 @property (nonatomic, copy) NSString *fat_price; //金额，带单位
 
@@ -62,6 +64,8 @@
 @property (nonatomic, assign) NSInteger channel_id; //渠道id
 
 @property (nonatomic, assign) NSInteger pay_type;   //渠道类型 1原生支付（如支付宝app支付和微信app支付） 2三方wap支付 3三方sdk支付
+
+@property (nonatomic, copy) NSString *link_url;
 
 @property (nonatomic, copy) NSString *gateway;      //跳转网关
 
